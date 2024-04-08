@@ -17,8 +17,8 @@
 
 /*!
     \qmltype AlertDialog
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Alert dialogs are urgent interruptions to inform the user about a situation.
 

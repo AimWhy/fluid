@@ -13,9 +13,9 @@
  */
 
 import QtQuick
-import QtTest
-import Fluid.Controls
 import QtQuick.Controls.Material
+import QtTest
+import Fluid
 
 Icon {
     id: icon

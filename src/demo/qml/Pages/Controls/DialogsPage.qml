@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Item {
     Column {
@@ -31,7 +31,7 @@ Item {
         }
     }
 
-    FluidControls.AlertDialog {
+    Fluid.AlertDialog {
         id: alert
 
         x: (parent.width - width) / 2
@@ -41,7 +41,7 @@ Item {
         standardButtons: Dialog.Discard | Dialog.Cancel
     }
 
-    FluidControls.InputDialog {
+    Fluid.InputDialog {
         id: input
 
         x: (parent.width - width) / 2

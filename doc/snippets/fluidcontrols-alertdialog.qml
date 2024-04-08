@@ -21,7 +21,7 @@ import QtQuick.Controls 2.3
 import Fluid.Controls 1.0 as FluidControls
 
 Item {
-    FluidControls.AlertDialog {
+    Fluid.AlertDialog {
         id: alertDialog
         title: qsTr("Use FooBar's localization service?")
         text: qsTr("Let FooBar help apps determine the location. " +

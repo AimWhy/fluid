@@ -17,8 +17,8 @@
 
 /*!
    \qmltype SnackBar
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief SnackBar provides a brief feedback about an operation.
 

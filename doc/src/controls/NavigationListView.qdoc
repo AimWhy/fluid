@@ -17,8 +17,8 @@
 
 /*!
     \qmltype NavigationListView
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits Fluid.Controls::NavigationDrawer
 
     \brief The navigation drawer slides in from the left and is a common pattern in apps.
@@ -48,7 +48,7 @@
             onClicked: drawer.open()
         }
 
-        FluidControls.NavigationListView {
+        Fluid.NavigationListView {
             topContent: Image {
                 width: parent.width
                 height: 200
@@ -56,10 +56,10 @@
             }
 
             actions: [
-                FluidControls.Action {
+                Fluid.Action {
                     text: "Action 1"
                 },
-                FluidControls.Action {
+                Fluid.Action {
                     text: "Action 2"
                 }
             ]

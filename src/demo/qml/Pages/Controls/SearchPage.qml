@@ -15,10 +15,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Item {
-    FluidControls.SearchBar {
+    Fluid.SearchBar {
         id: searchbar
         onSearchTextChanged: {
             if ("fluid".startsWith(searchText)) {
@@ -49,10 +49,10 @@ Item {
         delegate: Item {
             width: parent.width
             height: 128
-            FluidControls.Card {
+            Fluid.Card {
                 anchors.fill: parent
                 anchors.margins: 8
-                FluidControls.Ripple {
+                Fluid.Ripple {
                     anchors.fill: parent
                     onClicked: console.log(model.uri)
                 }
@@ -60,10 +60,10 @@ Item {
                     anchors.fill: parent
                     anchors.margins: 16
                     spacing: 16
-                    FluidControls.TitleLabel {
+                    Fluid.TitleLabel {
                         text: model.title
                     }
-                    FluidControls.BodyLabel {
+                    Fluid.BodyLabel {
                         width: parent.width
                         text: model.body
                         wrapMode: Text.WordWrap

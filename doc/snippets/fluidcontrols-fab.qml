@@ -21,7 +21,7 @@ import Fluid.Core 1.0 as FluidCore
 import Fluid.Controls 1.0 as FluidControls
 
 Item {
-    FluidControls.FloatingActionButton {
+    Fluid.FloatingActionButton {
         anchors.centerIn: parent
         icon.source: FluidCore.Utils.iconUrl("device/airplanemode_active")
         mini: false

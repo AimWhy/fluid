@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPage {
@@ -38,7 +38,7 @@ Components.StyledPage {
                 onClicked: dateTimePickerDialogPortrait.open()
             }
 
-            FluidControls.DisplayLabel {
+            Fluid.DisplayLabel {
                 id: dateTimeLabel
                 level: 2
                 text: qsTr("n.a.")
@@ -49,22 +49,22 @@ Components.StyledPage {
                 text: qsTr("24 hour clock")
             }
 
-            FluidControls.DateTimePicker {
-                orientation: FluidControls.DateTimePicker.Landscape
+            Fluid.DateTimePicker {
+                orientation: Fluid.DateTimePicker.Landscape
                 selectedDateTime: new Date(2012, 11, 21, 21, 12, 42)
                 onSelectedDateTimeChanged: console.log("Selected date time:", selectedDateTime.toLocaleString(Qt.locale(), "yyyy-MM-dd hh:mm ap"))
             }
 
-            FluidControls.DateTimePicker {
-                orientation: FluidControls.DateTimePicker.Portrait
+            Fluid.DateTimePicker {
+                orientation: Fluid.DateTimePicker.Portrait
                 selectedDateTime: new Date(2012, 11, 21, 21, 12, 42)
                 onSelectedDateTimeChanged: console.log("Selected date time:", selectedDateTime.toLocaleString(Qt.locale(), "yyyy-MM-dd hh:mm ap"))
             }
         }
 
-        FluidControls.DateTimePickerDialog {
+        Fluid.DateTimePickerDialog {
             id: dateTimePickerDialogLandscape
-            orientation: FluidControls.DateTimePicker.Landscape
+            orientation: Fluid.DateTimePicker.Landscape
             selectedDateTime: new Date(2012, 11, 21, 21, 12, 42)
             prefer24Hour: prefer24HourSwitch.checked
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
@@ -81,9 +81,9 @@ Components.StyledPage {
             Material.theme: page.Material.theme
         }
 
-        FluidControls.DateTimePickerDialog {
+        Fluid.DateTimePickerDialog {
             id: dateTimePickerDialogPortrait
-            orientation: FluidControls.DateTimePicker.Portrait
+            orientation: Fluid.DateTimePicker.Portrait
             selectedDateTime: new Date(2012, 11, 21, 21, 12, 42)
             prefer24Hour: prefer24HourSwitch.checked
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel

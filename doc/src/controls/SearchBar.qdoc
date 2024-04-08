@@ -18,8 +18,8 @@
 
 /*!
   \qmltype SearchBar
-  \inqmlmodule Fluid.Controls
-  \ingroup fluidcontrols
+  \inqmlmodule Fluid
+  \ingroup fluid
 
   \brief Provides a searchbar, that supports autocompletion and displays search results using cards.
 */

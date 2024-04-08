@@ -17,8 +17,8 @@
 
 /*!
     \qmltype OverlayView
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits Popup
 
     \brief Ready made popup centered on its parent.

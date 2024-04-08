@@ -17,8 +17,8 @@
 
 /*!
     \qmltype CircleImage
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Circular image.
 

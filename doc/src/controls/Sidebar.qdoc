@@ -17,8 +17,8 @@
 
 /*!
    \qmltype Sidebar
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief A sidebar component for use in adaptive layouts.
 

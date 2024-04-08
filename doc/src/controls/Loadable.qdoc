@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Loadable
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Loadable component.
 */

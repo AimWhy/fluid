@@ -17,8 +17,8 @@
 
 /*!
     \qmltype SmoothFadeLoader
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits Item
 
     \brief Displays an item and smoothly fade when the source is changed.

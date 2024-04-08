@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Showable
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Showtable component.
 */

@@ -1,11 +1,14 @@
 add_executable(tst_fluid_controls
     controls.cpp
+    tst_clipboard.qml
     tst_color.qml
+    tst_date.qml
     tst_fab.qml
     tst_icon.qml
     tst_listitem.qml
     tst_ripple.qml
     tst_typography.qml
+    tst_utils.qml
 )
 target_compile_definitions(tst_fluid_controls PRIVATE
     QUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}"

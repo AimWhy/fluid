@@ -17,8 +17,8 @@
 
 /*!
    \qmltype Tab
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief Tab for tabbed pages.
 

@@ -15,24 +15,24 @@
 
 import QtQuick
 import QtTest
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 TestCase {
     name: "ColorTests"
 
     function test_blend() {
-        compare(FluidControls.Color.blend("lightsteelblue", "#10FF0000", 0.5), "#7fd8626f");
+        compare(Fluid.Color.blend("lightsteelblue", "#10FF0000", 0.5), "#7fd8626f");
     }
 
     function test_luminance() {
-        fuzzyCompare(FluidControls.Color.luminance("lightsteelblue"), 0.75, 0.01);
+        fuzzyCompare(Fluid.Color.luminance("lightsteelblue"), 0.75, 0.01);
     }
 
     function test_isDarkColor_should_return_true_for_dark_color() {
-        compare(FluidControls.Color.isDarkColor("#455A64"), true);
+        compare(Fluid.Color.isDarkColor("#455A64"), true);
     }
 
     function test_isDarkColor_should_return_false_for_light_color() {
-        compare(FluidControls.Color.isDarkColor("#B0BEC5"), false);
+        compare(Fluid.Color.isDarkColor("#B0BEC5"), false);
     }
 }

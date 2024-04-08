@@ -13,14 +13,14 @@
  */
 
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
-FluidControls.Page {
+Fluid.Page {
     title: "Sub page demo"
 
     actions: [
-        FluidControls.Action {
-            icon.source: FluidControls.Utils.iconUrl("action/settings")
+        Fluid.Action {
+            icon.source: Fluid.Utils.iconUrl("action/settings")
             toolTip: qsTr("Settings")
             hoverAnimation: true
         }

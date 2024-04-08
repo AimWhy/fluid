@@ -17,8 +17,8 @@
 
 /*!
     \qmltype SubheadingLabel
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Text label with standard font and styling suitable to subheading.
 

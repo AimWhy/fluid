@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtTest
-import Fluid.Controls
+import Fluid
 
 Item {
     width: 400

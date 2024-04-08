@@ -14,35 +14,35 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPageTwoColumns {
     leftColumn: Column {
         anchors.centerIn: parent
 
-        FluidControls.TitleLabel {
+        Fluid.TitleLabel {
             text: qsTr("Enabled")
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("device/airplanemode_active")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
             mini: false
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("navigation/check")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("navigation/check")
             highlighted: true
             mini: false
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("device/airplanemode_active")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
             mini: true
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("navigation/check")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("navigation/check")
             highlighted: true
             mini: true
         }
@@ -51,31 +51,31 @@ Components.StyledPageTwoColumns {
     rightColumn: Column {
         anchors.centerIn: parent
 
-        FluidControls.TitleLabel {
+        Fluid.TitleLabel {
             text: qsTr("Disabled")
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("device/airplanemode_active")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
             mini: false
             enabled: false
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("navigation/check")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("navigation/check")
             highlighted: true
             mini: false
             enabled: false
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("device/airplanemode_active")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
             mini: true
             enabled: false
         }
 
-        FluidControls.FloatingActionButton {
-            icon.source: FluidControls.Utils.iconUrl("navigation/check")
+        Fluid.FloatingActionButton {
+            icon.source: Fluid.Utils.iconUrl("navigation/check")
             highlighted: true
             mini: true
             enabled: false

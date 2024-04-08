@@ -17,8 +17,8 @@
 
 /*!
     \qmltype InputDialog
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Input dialogs ask the user to input data with certain constraints.
 

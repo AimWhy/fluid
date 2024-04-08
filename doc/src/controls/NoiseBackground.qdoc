@@ -17,8 +17,8 @@
 
 /*!
     \qmltype NoiseBackground
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Background with noise.
 */

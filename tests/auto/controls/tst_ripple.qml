@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtTest
-import Fluid.Controls
+import Fluid
 
 Ripple {
     id: ripple

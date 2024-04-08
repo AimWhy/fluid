@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.."
 
 Page {
@@ -26,49 +26,49 @@ Page {
         ColumnLayout {
             width: parent.width
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with only text"
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with sub text"
                 subText: "Sub text"
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with sub text and 2/2 lines"
                 subText: "Sub text line 1\nSub text line 2"
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with sub text and 3/3 lines"
                 subText: "Sub text line 1\nSub text line 2\nSub text line 3"
                 maximumLineCount: 3
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with sub text and 4/4 lines"
                 subText: "Sub text line 1\nSub text line 2\nSub text line 3\nSub text line 4"
                 maximumLineCount: 4
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with sub text and 5/3 lines"
                 subText: "Sub text line 1\nSub text line 2\nSub text line 3\nSub text line 4\nSub text line 5"
                 maximumLineCount: 3
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with value text"
                 valueText: "Value"
             }
 
-            FluidControls.ListItem {
-                icon.source: FluidControls.Utils.iconUrl("action/event")
+            Fluid.ListItem {
+                icon.source: Fluid.Utils.iconUrl("action/event")
                 text: "ListItem with icon"
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with custom rightItem"
                 rightItem: Switch {
                     anchors.centerIn: parent
@@ -76,7 +76,7 @@ Page {
                 }
             }
 
-            FluidControls.ListItem {
+            Fluid.ListItem {
                 text: "ListItem with custom secondaryItem"
                 secondaryItem: Slider {
                     width: parent.width

@@ -19,7 +19,7 @@
 import QtQuick 2.10
 import Fluid.Controls 1.0 as FluidControls
 
-FluidControls.HeadlineLabel {
+Fluid.HeadlineLabel {
     text: "Text to display"
 }
 //! [file]

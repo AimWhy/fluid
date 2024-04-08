@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Controls
+import Fluid
 import "../.."
 
 Item {

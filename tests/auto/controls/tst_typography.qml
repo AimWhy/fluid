@@ -13,10 +13,9 @@
  */
 
 import QtQuick
-import QtTest
-import Fluid.Core
-import Fluid.Controls
 import QtQuick.Controls
+import QtTest
+import Fluid
 
 TestCase {
     id: testCase

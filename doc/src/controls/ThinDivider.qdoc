@@ -17,8 +17,8 @@
 
 /*!
    \qmltype ThinDivider
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief A 1px high divider for use in lists and other columns of content.
 */

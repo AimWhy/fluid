@@ -18,8 +18,8 @@
 
 /*!
     \qmltype PageSidebar
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Represents a split sidebar in a page, with its own title, actions, and color
     in the app bar.

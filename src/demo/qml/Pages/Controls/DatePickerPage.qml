@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPage {
@@ -38,28 +38,28 @@ Components.StyledPage {
                 onClicked: datePickerDialogPortrait.open()
             }
 
-            FluidControls.DisplayLabel {
+            Fluid.DisplayLabel {
                 id: dateLabel
                 level: 2
                 text: qsTr("n.a.")
             }
 
-            FluidControls.DatePicker {
-                orientation: FluidControls.DatePicker.Landscape
+            Fluid.DatePicker {
+                orientation: Fluid.DatePicker.Landscape
                 selectedDate: new Date(2012, 11, 21)
                 onSelectedDateChanged: console.log("Selected date:", selectedDate.toLocaleString(Qt.locale(), "yyyy-MM-dd"))
             }
 
-            FluidControls.DatePicker {
-                orientation: FluidControls.DatePicker.Portrait
+            Fluid.DatePicker {
+                orientation: Fluid.DatePicker.Portrait
                 selectedDate: new Date(2012, 11, 21)
                 onSelectedDateChanged: console.log("Selected date:", selectedDate.toLocaleString(Qt.locale(), "yyyy-MM-dd"))
             }
         }
 
-        FluidControls.DatePickerDialog {
+        Fluid.DatePickerDialog {
             id: datePickerDialogLandscape
-            orientation: FluidControls.DatePicker.Landscape
+            orientation: Fluid.DatePicker.Landscape
             selectedDate: new Date(2012, 11, 21)
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
             standardButtonsContainer: Button {
@@ -75,9 +75,9 @@ Components.StyledPage {
             Material.theme: page.Material.theme
         }
 
-        FluidControls.DatePickerDialog {
+        Fluid.DatePickerDialog {
             id: datePickerDialogPortrait
-            orientation: FluidControls.DatePicker.Portrait
+            orientation: Fluid.DatePicker.Portrait
             selectedDate: new Date(2012, 11, 21)
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
             standardButtonsContainer: Button {

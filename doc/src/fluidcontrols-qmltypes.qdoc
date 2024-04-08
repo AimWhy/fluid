@@ -13,8 +13,8 @@
  */
 
 /*!
-    \qmlmodule Fluid.Controls 1.1
-    \title Fluid Controls QML Types
+    \qmlmodule Fluid
+    \title Fluid QML Types
     \ingroup qmlmodules
 
     \brief Provides QML types for user interfaces.
@@ -25,10 +25,10 @@
     using the following import statement in your .qml file:
 
     \badcode
-    import Fluid.Controls 1.1 as FluidControls
+    import Fluid
     \endcode
 
     \section1
-    \generatelist {qmltypesbymodule Fluid.Controls}
+    \generatelist {qmltypesbymodule Fluid}
     \noautolist
 */

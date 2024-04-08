@@ -28,7 +28,7 @@ Item {
         onClicked: customBottomSheet.open()
     }
 
-    FluidControls.BottomSheet {
+    Fluid.BottomSheet {
         id: customBottomSheet
 
         Column {
@@ -41,11 +41,11 @@ Item {
                 Column {
                     spacing: 8
 
-                    FluidControls.TitleLabel {
+                    Fluid.TitleLabel {
                         text: "freedom"
                     }
 
-                    FluidControls.BodyLabel {
+                    Fluid.BodyLabel {
                         text: "/ˈfriːdəm/"
                         color: Material.secondaryTextColor
                     }
@@ -60,12 +60,12 @@ Item {
                 padding: 16
 
                 Column {
-                    FluidControls.SubheadingLabel {
+                    Fluid.SubheadingLabel {
                         text: "noun"
                         color: Material.secondaryTextColor
                     }
 
-                    FluidControls.BodyLabel {
+                    Fluid.BodyLabel {
                         text: "the right to live in the way you want without being controlled by anyone else"
                     }
                 }

@@ -14,11 +14,11 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.."
 
 Item {
-    FluidControls.NavigationListView {
+    Fluid.NavigationListView {
         id: navListView
 
         autoHighlight: autoHighlightCheckBox.checked
@@ -30,10 +30,10 @@ Item {
         }
 
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: "Action 1"
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: "Action 2"
             }
         ]

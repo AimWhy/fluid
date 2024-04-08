@@ -15,13 +15,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPage {
-    FluidControls.Placeholder {
+    Fluid.Placeholder {
         anchors.centerIn: parent
-        icon.source: FluidControls.Utils.iconUrl("social/notifications_none")
+        icon.source: Fluid.Utils.iconUrl("social/notifications_none")
         text: qsTr("No notifications")
         subText: qsTr("At the moment there are no notifications available")
     }

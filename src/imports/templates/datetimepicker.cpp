@@ -18,21 +18,21 @@
     \qmltype DateTimePicker
     \inherits QQuickItem
     \instantiates DateTimePicker
-    \inqmlmodule Fluid.Controls
+    \inqmlmodule Fluid
 
     \brief Control to select a both date and time.
 
     Stand-alone control to select both date and time.
 
     \code
-    import QtQuick 2.10
-    import Fluid.Controls 1.0 as FluidControls
+    import QtQuick
+    import Fluid
 
     Item {
         width: 600
         height: 600
 
-        FluidControls.DateTimePicker {
+        DateTimePicker {
             anchors.centerIn: parent
             onSelectedDateTimeChanged: {
                 console.log("You have selected:", selectedDateTime);

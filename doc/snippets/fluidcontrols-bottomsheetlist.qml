@@ -28,31 +28,31 @@ Item {
         onClicked: gridBottomSheet.open()
     }
 
-    FluidControls.BottomSheetList {
+    Fluid.BottomSheetList {
         id: listBottomSheet
         title: qsTr("Save As")
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Folder")
                 icon.source: FluidCore.Utils.iconUrl("file/folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("New Folder")
                 icon.source: FluidCore.Utils.iconUrl("file/create_new_folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Shared Folder")
                 icon.source: FluidCore.Utils.iconUrl("file/folder_shared")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Cloud")
                 icon.source: FluidCore.Utils.iconUrl("file/cloud")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Email Attachment")
                 icon.source: FluidCore.Utils.iconUrl("file/attachment")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Upload")
                 icon.source: FluidCore.Utils.iconUrl("file/file_upload")
             }

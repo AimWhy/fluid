@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Item {
     Image {
@@ -23,13 +23,13 @@ Item {
         width: 400
         height: 250
 
-        FluidControls.Ripple {
+        Fluid.Ripple {
             anchors.fill: parent
             onClicked: overlayView.open()
         }
     }
 
-    FluidControls.OverlayView {
+    Fluid.OverlayView {
         id: overlayView
 
         width: 800
@@ -39,23 +39,23 @@ Item {
             anchors.fill: parent
             source: Qt.resolvedUrl("qrc:/images/balloon.jpg")
 
-            FluidControls.Ripple {
+            Fluid.Ripple {
                 anchors.fill: parent
                 onClicked: overlayView.close()
             }
         }
 
         Row {
-            anchors { top: parent.top; right: parent.right; rightMargin: FluidControls.Units.largeSpacing }
+            anchors { top: parent.top; right: parent.right; rightMargin: Fluid.Units.largeSpacing }
             height: 48
             spacing: 24
 
             Repeater {
                 model: ["content/add", "image/edit", "action/delete"]
-                delegate: FluidControls.ToolButton {
+                delegate: Fluid.ToolButton {
                     anchors.verticalCenter: parent.verticalCenter
 
-                    icon.source: FluidControls.Utils.iconUrl(modelData)
+                    icon.source: Fluid.Utils.iconUrl(modelData)
                     icon.color: Material.iconColor
 
                     Material.theme: Material.Dark

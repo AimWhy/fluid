@@ -17,8 +17,8 @@
 
 /*!
     \qmltype FloatingActionButton
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief A floating action button.
 

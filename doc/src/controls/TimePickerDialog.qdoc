@@ -17,8 +17,8 @@
 
 /*!
     \qmltype TimePickerDialog
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Dialog with a picker to select time.
 
@@ -32,7 +32,7 @@
         width: 600
         height: 600
 
-        FluidControls.TimePickerDialog {
+        Fluid.TimePickerDialog {
             onAccepted: {
                 console.log(selectedDate);
             }
@@ -76,7 +76,7 @@
     of the dialog, like in this example:
 
     \code
-    FluidControls.TimePickerDialog {
+    Fluid.TimePickerDialog {
         id: timePickerDialog
         standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
         standardButtonsContainer: Button {

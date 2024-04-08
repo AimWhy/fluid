@@ -18,8 +18,8 @@
 
 /*!
    \qmltype Action
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief Represents an action shown in an action bar, context menu, or list.
 

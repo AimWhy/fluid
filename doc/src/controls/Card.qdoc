@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Fluid.Controls.Card
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Cards display content composed of different elements.
 

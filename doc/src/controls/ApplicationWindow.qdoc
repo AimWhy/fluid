@@ -18,8 +18,8 @@
 
 /*!
    \qmltype ApplicationWindow
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief A window that provides features commonly used for Material Design apps.
 
@@ -32,7 +32,7 @@
    import QtQuick 2.10
    import Fluid.Controls 1.1 as FluidControls
 
-   FluidControls.ApplicationWindow {
+   Fluid.ApplicationWindow {
        title: "Application Name"
        width: 1024
        height: 800
@@ -40,7 +40,7 @@
 
        initialPage: page
 
-       FluidControls.Page {
+       Fluid.Page {
            id: page
            title: "Page Title"
 

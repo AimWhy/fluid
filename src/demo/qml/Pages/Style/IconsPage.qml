@@ -16,8 +16,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
-import Fluid.Layouts as FluidLayouts
+import Fluid as Fluid
 import Fluid.Demo as FluidDemo
 
 Page {
@@ -44,7 +43,7 @@ Page {
         }
     }
 
-    FluidControls.SearchBar {
+    Fluid.SearchBar {
         id: searchBar
         anchors.left: themeRow.right
     }
@@ -63,7 +62,7 @@ Page {
 
                     property string currentCategory: model.category
 
-                    FluidControls.Subheader {
+                    Fluid.Subheader {
                         text: model.category
                     }
 
@@ -76,8 +75,8 @@ Page {
                             model: FluidDemo.IconNameModel {
                                 category: entry.currentCategory
                             }
-                            delegate: FluidControls.Icon {
-                                source: FluidControls.Utils.iconUrl(entry.currentCategory + "/" + model.name)
+                            delegate: Fluid.Icon {
+                                source: Fluid.Utils.iconUrl(entry.currentCategory + "/" + model.name)
                                 visible: model.name.indexOf(searchBar.searchText) !== -1
                                 size: 48
 

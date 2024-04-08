@@ -18,8 +18,8 @@
 /*!
     \qmltype Chip
     \inherits QtQuick.Controls::AbstractButton
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \since Fluid.Controls 1.1
 
     \brief Chips represent complex entities in small blocks, such as a contact.

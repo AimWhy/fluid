@@ -17,8 +17,8 @@
 
 /*!
     \qmltype TitleLabel
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits Label
 
     \brief Text label with standard font and styling suitable to titles.

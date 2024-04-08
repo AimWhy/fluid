@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Item {
     Column {
@@ -55,7 +55,7 @@ Item {
         }
     }
 
-    FluidControls.SnackBar {
+    Fluid.SnackBar {
         id: snackBar
         onClicked: console.log("Snack bar button clicked")
     }

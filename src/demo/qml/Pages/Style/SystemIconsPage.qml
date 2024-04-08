@@ -16,7 +16,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Page {
     header: Row {
@@ -63,42 +63,42 @@ Page {
                 columnSpacing: 16
                 rowSpacing: 16
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "text-editor-symbolic"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "weather-few-clouds-symbolic"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "system-software-install-symbolic"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "system-users-symbolic"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "accessories-calculator"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "accessories-character-map"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "accessories-dictionary"
                     size: 48
                 }
 
-                FluidControls.Icon {
+                Fluid.Icon {
                     name: "accessories-text-editor"
                     size: 48
                 }

@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPage {
@@ -38,7 +38,7 @@ Components.StyledPage {
                 onClicked: timePickerDialogPortrait.open()
             }
 
-            FluidControls.DisplayLabel {
+            Fluid.DisplayLabel {
                 id: timeLabel
                 level: 2
                 text: qsTr("n.a.")
@@ -49,20 +49,20 @@ Components.StyledPage {
                 text: qsTr("24 hour clock")
             }
 
-            FluidControls.TimePicker {
-                orientation: FluidControls.TimePicker.Landscape
+            Fluid.TimePicker {
+                orientation: Fluid.TimePicker.Landscape
                 selectedTime: new Date(1, 0, 1, 21, 12, 42)
             }
 
-            FluidControls.TimePicker {
-                orientation: FluidControls.TimePicker.Portrait
+            Fluid.TimePicker {
+                orientation: Fluid.TimePicker.Portrait
                 selectedTime: new Date(1, 0, 1, 21, 12, 42)
             }
         }
 
-        FluidControls.TimePickerDialog {
+        Fluid.TimePickerDialog {
             id: timePickerDialogLandscape
-            orientation: FluidControls.TimePicker.Landscape
+            orientation: Fluid.TimePicker.Landscape
             selectedTime: new Date(1, 0, 1, 21, 12, 42)
             prefer24Hour: prefer24HourSwitch.checked
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
@@ -78,9 +78,9 @@ Components.StyledPage {
             Material.theme: page.Material.theme
         }
 
-        FluidControls.TimePickerDialog {
+        Fluid.TimePickerDialog {
             id: timePickerDialogPortrait
-            orientation: FluidControls.TimePicker.Portrait
+            orientation: Fluid.TimePicker.Portrait
             selectedTime: new Date(1, 0, 1, 21, 12, 42)
             prefer24Hour: prefer24HourSwitch.checked
             standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel

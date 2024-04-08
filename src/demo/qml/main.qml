@@ -17,10 +17,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Fluid.Core as FluidCore
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
-FluidControls.ApplicationWindow {
+Fluid.ApplicationWindow {
     id: window
 
     visible: true
@@ -35,7 +34,7 @@ FluidControls.ApplicationWindow {
     Material.primary: Material.LightBlue
     Material.accent: Material.Blue
 
-    FluidControls.NavigationDrawer {
+    Fluid.NavigationDrawer {
         id: navDrawer
 
         readonly property bool mobileAspect: window.width < 500
@@ -92,15 +91,15 @@ FluidControls.ApplicationWindow {
                 currentIndex: -1
                 section.property: "category"
                 section.criteria: ViewSection.FullString
-                section.delegate: FluidControls.Subheader {
+                section.delegate: Fluid.Subheader {
                     text: section
                     width: parent.width
 
-                    FluidControls.ThinDivider {
+                    Fluid.ThinDivider {
                         width: parent.width
                     }
                 }
-                delegate: FluidControls.ListItem {
+                delegate: Fluid.ListItem {
                     text: model.title
                     highlighted: ListView.isCurrentItem
                     onClicked: {
@@ -114,59 +113,59 @@ FluidControls.ApplicationWindow {
         }
     }
 
-    initialPage: FluidControls.Page {
+    initialPage: Fluid.Page {
         title: window.title
 
         x: navDrawer.modal ? 0 : navDrawer.position * navDrawer.width
         width: window.width - x
 
-        leftAction: FluidControls.Action {
-            icon.source: FluidControls.Utils.iconUrl("navigation/menu")
+        leftAction: Fluid.Action {
+            icon.source: Fluid.Utils.iconUrl("navigation/menu")
             visible: navDrawer.modal
             onTriggered: navDrawer.visible ? navDrawer.close() : navDrawer.open()
         }
 
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Dummy error")
-                icon.source: FluidControls.Utils.iconUrl("alert/warning")
+                icon.source: Fluid.Utils.iconUrl("alert/warning")
                 toolTip: qsTr("Show a dummy error")
                 onTriggered: console.log("Dummy error")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Colors")
-                icon.source: FluidControls.Utils.iconUrl("image/color_lens")
+                icon.source: Fluid.Utils.iconUrl("image/color_lens")
                 toolTip: qsTr("Pick a color")
                 onTriggered: console.log("Colors")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Settings")
-                icon.source: FluidControls.Utils.iconUrl("action/settings")
+                icon.source: Fluid.Utils.iconUrl("action/settings")
                 toolTip: qsTr("Settings")
                 hoverAnimation: true
                 onTriggered: console.log("Settings clicked")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("This should not be visible")
-                icon.source: FluidControls.Utils.iconUrl("alert/warning")
+                icon.source: Fluid.Utils.iconUrl("alert/warning")
                 visible: false
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Language")
-                icon.source: FluidControls.Utils.iconUrl("action/language")
+                icon.source: Fluid.Utils.iconUrl("action/language")
                 enabled: false
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Accounts")
-                icon.source: FluidControls.Utils.iconUrl("action/account_circle")
+                icon.source: Fluid.Utils.iconUrl("action/account_circle")
             }
         ]
 
         StackView {
             id: stackView
             anchors.fill: parent
-            initialItem: FluidControls.Placeholder {
-                icon.source: FluidControls.Utils.iconUrl("content/filter_list")
+            initialItem: Fluid.Placeholder {
+                icon.source: Fluid.Utils.iconUrl("content/filter_list")
                 text: qsTr("Select a demo")
                 subText: qsTr("At the moment there is no demo selected from the navigration drawer, choose one and play with it.")
             }

@@ -19,7 +19,7 @@
 import QtQuick 2.10
 import Fluid.Controls 1.0 as FluidControls
 
-FluidControls.Card {
+Fluid.Card {
     anchors.centerIn: parent
     width: 400
     height: 400
@@ -45,11 +45,11 @@ FluidControls.Card {
         }
         spacing: Units.smallSpacing * 2
 
-        FluidControls.TitleLabel {
+        Fluid.TitleLabel {
             text: qsTr("Yosemite National Park")
         }
 
-        FluidControls.BodyLabel {
+        Fluid.BodyLabel {
             text: qsTr("First protected in 1864, Yosemite National Park " +
                        "is best known for its waterfalls, but within its " +
                        "nearly 1,200 square miles, you can find deep " +

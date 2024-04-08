@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Wave
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Provides a wave animation for transitioning between views of content.
 

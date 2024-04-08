@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Units
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Units.
 */

@@ -18,8 +18,8 @@
 
 /*!
     \qmltype SmoothFadeImage
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Displays an image and smoothly fade when the source is changed.
 

@@ -17,8 +17,8 @@
 
 /*!
     \qmltype DatePickerDialog
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Dialog to select a single date.
 
@@ -38,7 +38,7 @@
             onClicked: datePickerDialog.open()
         }
 
-        FluidControls.DatePickerDialog {
+        Fluid.DatePickerDialog {
             id: datePickerDialog
             onAccepted: {
                 console.log(selectedDate);
@@ -101,7 +101,7 @@
     of the dialog, like in this example:
 
     \code
-    FluidControls.DatePickerDialog {
+    Fluid.DatePickerDialog {
         id: datePickerDialog
         standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
         standardButtonsContainer: Button {

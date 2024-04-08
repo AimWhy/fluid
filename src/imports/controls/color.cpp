@@ -17,7 +17,7 @@
 /*!
     \qmltype Color
     \instantiates Color
-    \inqmlmodule Fluid.Controls
+    \inqmlmodule Fluid
 
     \brief Utility functions for colors.
 

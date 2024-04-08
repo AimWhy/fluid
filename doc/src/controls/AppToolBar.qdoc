@@ -18,8 +18,8 @@
 
 /*!
    \qmltype AppToolBar
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief Application tool bar.
  */

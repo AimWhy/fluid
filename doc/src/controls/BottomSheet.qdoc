@@ -17,8 +17,8 @@
 
 /*!
     \qmltype BottomSheet
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief A sheet of paper that slides up from the bottom.
 

@@ -17,8 +17,8 @@
 
 /*!
     \qmltype TabbedPage
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Page with tabs.
 
@@ -26,14 +26,14 @@
     import QtQuick 2.10
     import Fluid.Controls 1.0 as FluidControls
 
-    FluidControls.ApplicationWindow {
+    Fluid.ApplicationWindow {
         title: "Application Name"
         width: 1024
         height: 800
         visible: true
 
-        initialPage: FluidControls.TabbedPage {
-            FluidControls.Tab {
+        initialPage: Fluid.TabbedPage {
+            Fluid.Tab {
                 title: "Tab 1"
 
                 Label {
@@ -42,7 +42,7 @@
                 }
             }
 
-            FluidControls.Tab {
+            Fluid.Tab {
                 title: "Tab 2"
 
                 Label {

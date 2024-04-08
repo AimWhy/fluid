@@ -17,8 +17,8 @@
 
 /*!
     \qmltype ListItem
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits ItemDelegate
 
     \brief A standard list item, with one or more lines of text and optional left and right items.

@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Placeholder
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Shows a placeholder icon and text.
 

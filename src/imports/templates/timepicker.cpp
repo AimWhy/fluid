@@ -18,21 +18,21 @@
     \qmltype TimePicker
     \inherits QQuickItem
     \instantiates TimePicker
-    \inqmlmodule Fluid.Controls
+    \inqmlmodule Fluid
 
     \brief Control to select a time.
 
     Stand-alone control to select a time.
 
     \code
-    import QtQuick 2.10
-    import Fluid.Controls 1.0 as FluidControls
+    import QtQuick
+    import Fluid
 
     Item {
         width: 600
         height: 600
 
-        FluidControls.TimePicker {
+        TimePicker {
             anchors.centerIn: parent
             onSelectedTimeChanged: {
                 console.log("You have selected:", selectedTime);

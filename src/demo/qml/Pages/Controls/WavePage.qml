@@ -15,11 +15,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.."
 
 Item {
-    FluidControls.Wave {
+    Fluid.Wave {
         id: wave
         anchors.fill: parent
         Rectangle {

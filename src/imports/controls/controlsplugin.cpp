@@ -15,9 +15,9 @@
 #include "controlsplugin.h"
 #include "iconthemeimageprovider.h"
 
-void FluidControlsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
+void FluidPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
-    Q_ASSERT(QLatin1String(uri) == QLatin1String("Fluid.Controls"));
+    Q_ASSERT(QLatin1String(uri) == QLatin1String("Fluid"));
 
     // Set base URL to the plugin URL
     engine->setBaseUrl(baseUrl());
@@ -26,7 +26,7 @@ void FluidControlsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
     engine->addImageProvider(QStringLiteral("fluidicontheme"), new IconThemeImageProvider());
 }
 
-void FluidControlsPlugin::registerTypes(const char *uri)
+void FluidPlugin::registerTypes(const char *uri)
 {
     Q_UNUSED(uri)
 }

@@ -17,8 +17,8 @@
 
 /*!
     \qmltype Subheader
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief Subheaders are special list tiles that delineate distinct sections of a list or grid list.
 

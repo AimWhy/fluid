@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtTest
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 TestCase {
     id: testCase
@@ -28,7 +28,7 @@ TestCase {
 
     Component {
         id: fabComponent
-        FluidControls.FloatingActionButton {}
+        Fluid.FloatingActionButton {}
     }
 
     function test_size() {

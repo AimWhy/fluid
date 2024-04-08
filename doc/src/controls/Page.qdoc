@@ -18,26 +18,26 @@
 
 /*!
    \qmltype Page
-   \inqmlmodule Fluid.Controls
-   \ingroup fluidcontrols
+   \inqmlmodule Fluid
+   \ingroup fluid
 
    \brief Represents a page on the navigation page stack.
 
    Example:
 
    \qml
-   import QtQuick 2.10
-   import Fluid.Controls 1.1 as FluidControls
+   import QtQuick
+   import Fluid
 
-   FluidControls.Page {
+   Fluid.Page {
        title: "Application Name"
 
        actions: [
-           FluidControls.Action {
+           Action {
                name: "Print"
 
                // Icon name from the Google Material Design icon pack
-               icon.source: FluidControls.Utils.iconUrl("action/print")
+               icon.source: Fluid.Utils.iconUrl("action/print")
            }
        ]
    }

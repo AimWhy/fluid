@@ -15,8 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Core as FluidCore
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPage {
@@ -27,7 +26,7 @@ Components.StyledPage {
         Column {
             spacing: 16
 
-            FluidControls.TitleLabel {
+            Fluid.TitleLabel {
                 text: qsTr("Input Chips")
             }
 
@@ -54,9 +53,9 @@ Components.StyledPage {
             Row {
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     id: inputChip1
-                    iconItem: FluidControls.CircleImage {
+                    iconItem: Fluid.CircleImage {
                         source: inputChip1.selectedItem.imageSource
                         width: 24
                         height: 24
@@ -67,9 +66,9 @@ Components.StyledPage {
                     onSelectedItemChanged: console.info(selectedItem.value)
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     id: inputChip2
-                    iconItem: FluidControls.CircleImage {
+                    iconItem: Fluid.CircleImage {
                         source: inputChip2.selectedItem.imageSource
                         width: 24
                         height: 24
@@ -87,7 +86,7 @@ Components.StyledPage {
         Column {
             spacing: 16
 
-            FluidControls.TitleLabel {
+            Fluid.TitleLabel {
                 text: qsTr("Color Chips")
             }
 
@@ -98,7 +97,7 @@ Components.StyledPage {
             Row {
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     id: colorChip1
                     iconItem: Rectangle {
                         width: 24
@@ -106,9 +105,9 @@ Components.StyledPage {
                         radius: 12
                         color: Material.color(Material.Blue)
 
-                        FluidControls.Icon {
+                        Fluid.Icon {
                             anchors.centerIn: parent
-                            source: colorChip1.checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                            source: colorChip1.checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                             size: 20
                         }
                     }
@@ -117,7 +116,7 @@ Components.StyledPage {
                     ButtonGroup.group: colorChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     id: colorChip2
                     iconItem: Rectangle {
                         width: 24
@@ -125,9 +124,9 @@ Components.StyledPage {
                         radius: 12
                         color: Material.color(Material.Green)
 
-                        FluidControls.Icon {
+                        Fluid.Icon {
                             anchors.centerIn: parent
-                            source: colorChip2.checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                            source: colorChip2.checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                             size: 20
                         }
                     }
@@ -136,7 +135,7 @@ Components.StyledPage {
                     ButtonGroup.group: colorChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     id: colorChip3
                     iconItem: Rectangle {
                         width: 24
@@ -144,9 +143,9 @@ Components.StyledPage {
                         radius: 12
                         color: Material.color(Material.Red)
 
-                        FluidControls.Icon {
+                        Fluid.Icon {
                             anchors.centerIn: parent
-                            source: colorChip3.checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                            source: colorChip3.checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                             size: 20
                         }
                     }
@@ -160,7 +159,7 @@ Components.StyledPage {
         Column {
             spacing: 16
 
-            FluidControls.TitleLabel {
+            Fluid.TitleLabel {
                 text: qsTr("Choice Chips")
             }
 
@@ -172,26 +171,26 @@ Components.StyledPage {
                 id: choiceChips
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     checked: true
                     text: qsTr("Extra Soft")
                     ButtonGroup.group: choiceChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Soft")
                     ButtonGroup.group: choiceChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Medium")
                     ButtonGroup.group: choiceChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Hard")
                     ButtonGroup.group: choiceChipsGroup
@@ -202,7 +201,7 @@ Components.StyledPage {
         Column {
             spacing: 16
 
-            FluidControls.TitleLabel {
+            Fluid.TitleLabel {
                 text: qsTr("Filter Chips")
             }
 
@@ -215,46 +214,46 @@ Components.StyledPage {
                 id: filterChips
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     checked: true
                     text: qsTr("Elevator")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Washer / Dryer")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Fireplace")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Wheelchair access")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Dogs ok")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     checkable: true
                     text: qsTr("Cats ok")
-                    icon.source: checked ? FluidControls.Utils.iconUrl("navigation/check") : ""
+                    icon.source: checked ? Fluid.Utils.iconUrl("navigation/check") : ""
                     ButtonGroup.group: filterChipsGroup
                 }
             }
@@ -263,17 +262,17 @@ Components.StyledPage {
         Column {
             spacing: 16
 
-            FluidControls.TitleLabel {
+            Fluid.TitleLabel {
                 text: qsTr("Chips")
             }
 
             Row {
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     text: qsTr("Chip")
                 }
-                FluidControls.Chip {
+                Fluid.Chip {
                     text: qsTr("Deletable chip")
                     deletable: true
                     onDeleted: console.info(qsTr("Deleted"))
@@ -283,13 +282,13 @@ Components.StyledPage {
             Row {
                 spacing: 8
 
-                FluidControls.Chip {
+                Fluid.Chip {
                     text: qsTr("Chip with icon")
-                    icon.source: FluidControls.Utils.iconUrl("action/face")
+                    icon.source: Fluid.Utils.iconUrl("action/face")
                 }
-                FluidControls.Chip {
+                Fluid.Chip {
                     text: qsTr("Deletable chip with icon")
-                    icon.source: FluidControls.Utils.iconUrl("social/person")
+                    icon.source: Fluid.Utils.iconUrl("social/person")
                     deletable: true
                     onDeleted: console.info(qsTr("Deleted"))
                 }
@@ -298,16 +297,16 @@ Components.StyledPage {
             Row {
                 spacing: 8
 
-                FluidControls.Chip {
-                    iconItem: FluidControls.CircleImage {
+                Fluid.Chip {
+                    iconItem: Fluid.CircleImage {
                         source: "qrc:/images/balloon.jpg"
                         width: 24
                         height: 24
                     }
                     text: qsTr("Chip with image")
                 }
-                FluidControls.Chip {
-                    iconItem: FluidControls.CircleImage {
+                Fluid.Chip {
+                    iconItem: Fluid.CircleImage {
                         source: "qrc:/images/balloon.jpg"
                         width: 24
                         height: 24

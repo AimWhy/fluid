@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Fluid.Controls
+import Fluid
 import "../.." as Components
 
 Components.StyledPageTwoColumns {

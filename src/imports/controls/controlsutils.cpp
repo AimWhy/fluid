@@ -16,8 +16,8 @@
 
 /*!
     \qmltype Fluid.Controls::Utils
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
 
     \brief A collection of helpful utility methods.
 */
@@ -28,29 +28,39 @@ ControlsUtils::ControlsUtils(const QUrl &baseUrl, QObject *parent)
 }
 
 /*!
-    \qmlmethod url Fluid.Controls::Utils::iconUrl(string name)
+    \qmlmethod real Fluid::Utils::scale(real percent, real start, real end)
+
+    Scale \a percent in the range between \a start and \a end.
+*/
+qreal ControlsUtils::scale(qreal percent, qreal start, qreal end)
+{
+    return start + ((end - start) * (percent / 100));
+}
+
+/*!
+    \qmlmethod url Fluid::Utils::iconUrl(string name)
 
     Returns an URL for the Material Design icon \a name.
     Use this URL with Image or icon grouped property with controls.
 
     \code
-    import QtQuick 2.10
-    import Fluid.Controls 1.0 as FluidControls
+    import QtQuick
+    import Fluid as Fluid
 
     Image {
-        source: FluidControls.Utils.iconUrl("action/alarm")
+        source: Fluid.Utils.iconUrl("action/alarm")
         width: 64
         height: 64
     }
     \endcode
 
     \code
-    import QtQuick 2.10
-    import QtQuick.Controls 2.3
-    import Fluid.Controls 1.0 as FluidControls
+    import QtQuick
+    import QtQuick.Controls
+    import Fluid as Fluid
 
     Button {
-        icon.source: FluidControls.Utils.iconUrl("action/alarm")
+        icon.source: Fluid.Utils.iconUrl("action/alarm")
         text: qsTr("Alarm")
     }
     \endcode
@@ -60,7 +70,7 @@ QUrl ControlsUtils::iconUrl(const QString &name)
 #if FLUID_INSTALL_ICONS == 1
     return QUrl::fromLocalFile(QStringLiteral("%1/icons/%2.svg").arg(m_baseUrl.toLocalFile(), name));
 #else
-    return QUrl(QStringLiteral("qrc:/liri.io/imports/Fluid/Controls/icons/%1.svg").arg(name));
+    return QUrl(QStringLiteral("qrc:/liri.io/imports/Fluid/icons/%1.svg").arg(name));
 #endif
 }
 

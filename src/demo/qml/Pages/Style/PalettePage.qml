@@ -16,8 +16,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Fluid.Core
-import Fluid.Controls
+import Fluid
 import "../.."
 
 Flickable {

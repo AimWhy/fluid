@@ -15,7 +15,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import Fluid.Controls as FluidControls
+import Fluid as Fluid
 
 Item {
     Column {
@@ -42,235 +42,235 @@ Item {
         }
     }
 
-    FluidControls.BottomSheetList {
+    Fluid.BottomSheetList {
         id: listBottomSheet
         title: qsTr("Save As")
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder")
+                icon.source: Fluid.Utils.iconUrl("file/folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("New Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/create_new_folder")
+                icon.source: Fluid.Utils.iconUrl("file/create_new_folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Shared Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder_shared")
+                icon.source: Fluid.Utils.iconUrl("file/folder_shared")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Cloud")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud")
+                icon.source: Fluid.Utils.iconUrl("file/cloud")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Email Attachment")
-                icon.source: FluidControls.Utils.iconUrl("file/attachment")
+                icon.source: Fluid.Utils.iconUrl("file/attachment")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Upload")
-                icon.source: FluidControls.Utils.iconUrl("file/file_upload")
+                icon.source: Fluid.Utils.iconUrl("file/file_upload")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Warning (Disabled)")
-                icon.source: FluidControls.Utils.iconUrl("alert/warning")
+                icon.source: Fluid.Utils.iconUrl("alert/warning")
                 enabled: false
             }
         ]
     }
 
-    FluidControls.BottomSheetList {
+    Fluid.BottomSheetList {
         id: longListBottomSheet
         title: qsTr("Save As")
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder")
+                icon.source: Fluid.Utils.iconUrl("file/folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("New Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/create_new_folder")
+                icon.source: Fluid.Utils.iconUrl("file/create_new_folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Shared Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder_shared")
+                icon.source: Fluid.Utils.iconUrl("file/folder_shared")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Cloud")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud")
+                icon.source: Fluid.Utils.iconUrl("file/cloud")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Email Attachment")
-                icon.source: FluidControls.Utils.iconUrl("file/attachment")
+                icon.source: Fluid.Utils.iconUrl("file/attachment")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Upload")
-                icon.source: FluidControls.Utils.iconUrl("file/file_upload")
+                icon.source: Fluid.Utils.iconUrl("file/file_upload")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Warning (Disabled)")
-                icon.source: FluidControls.Utils.iconUrl("alert/warning")
+                icon.source: Fluid.Utils.iconUrl("alert/warning")
                 enabled: false
                 hasDividerAfter: true
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 1")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 2")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 3")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 4")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 5")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 6")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 7")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 8")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 9")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 10")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             }
         ]
     }
 
-    FluidControls.BottomSheetGrid {
+    Fluid.BottomSheetGrid {
         id: gridBottomSheet
         actions: [
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder")
+                icon.source: Fluid.Utils.iconUrl("file/folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("New Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/create_new_folder")
+                icon.source: Fluid.Utils.iconUrl("file/create_new_folder")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Shared Folder")
-                icon.source: FluidControls.Utils.iconUrl("file/folder_shared")
+                icon.source: Fluid.Utils.iconUrl("file/folder_shared")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Cloud")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud")
+                icon.source: Fluid.Utils.iconUrl("file/cloud")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Email Attachment")
-                icon.source: FluidControls.Utils.iconUrl("file/attachment")
+                icon.source: Fluid.Utils.iconUrl("file/attachment")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Upload")
-                icon.source: FluidControls.Utils.iconUrl("file/file_upload")
+                icon.source: Fluid.Utils.iconUrl("file/file_upload")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Warning (Disabled)")
-                icon.source: FluidControls.Utils.iconUrl("alert/warning")
+                icon.source: Fluid.Utils.iconUrl("alert/warning")
                 enabled: false
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 1")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 2")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 3")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 4")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 5")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 6")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 7")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 8")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 9")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 10")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 11")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 12")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 13")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 14")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 15")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 16")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 17")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 18")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 19")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             },
-            FluidControls.Action {
+            Fluid.Action {
                 text: qsTr("Placeholder 20")
-                icon.source: FluidControls.Utils.iconUrl("file/cloud_done")
+                icon.source: Fluid.Utils.iconUrl("file/cloud_done")
             }
         ]
     }
 
-    FluidControls.BottomSheet {
+    Fluid.BottomSheet {
         id: customBottomSheet
 
         Column {
@@ -283,11 +283,11 @@ Item {
                 Column {
                     spacing: 8
 
-                    FluidControls.TitleLabel {
+                    Fluid.TitleLabel {
                         text: "freedom"
                     }
 
-                    FluidControls.BodyLabel {
+                    Fluid.BodyLabel {
                         text: "/ˈfriːdəm/"
                         color: Material.secondaryTextColor
                     }
@@ -302,12 +302,12 @@ Item {
                 padding: 16
 
                 Column {
-                    FluidControls.SubheadingLabel {
+                    Fluid.SubheadingLabel {
                         text: "noun"
                         color: Material.secondaryTextColor
                     }
 
-                    FluidControls.BodyLabel {
+                    Fluid.BodyLabel {
                         text: "the right to live in the way you want without being controlled by anyone else"
                     }
                 }

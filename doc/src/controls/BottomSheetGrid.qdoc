@@ -17,8 +17,8 @@
 
 /*!
     \qmltype BottomSheetGrid
-    \inqmlmodule Fluid.Controls
-    \ingroup fluidcontrols
+    \inqmlmodule Fluid
+    \ingroup fluid
     \inherits BottomSheet
 
     \brief A sheet of paper with actions and an optional title that slides up from the bottom.

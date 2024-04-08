@@ -14,7 +14,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Fluid.Layouts as FluidLayouts
+import Fluid
 import "../.."
 
 Flickable {
@@ -23,7 +23,7 @@ Flickable {
 
     ScrollBar.vertical: ScrollBar {}
 
-    FluidLayouts.AutomaticGrid {
+    AutomaticGrid {
         id: layout
 
         anchors.fill: parent

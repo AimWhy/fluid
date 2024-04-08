@@ -18,21 +18,21 @@
     \qmltype DatePicker
     \inherits QQuickItem
     \instantiates DatePicker
-    \inqmlmodule Fluid.Controls
+    \inqmlmodule Fluid
 
     \brief Control to select a single date.
 
     Stand-alone control to select a single date from a calendar.
 
     \code
-    import QtQuick 2.10
-    import Fluid.Controls 1.0 as FluidControls
+    import QtQuick
+    import Fluid
 
     Item {
         width: 600
         height: 600
 
-        FluidControls.DatePicker {
+        DatePicker {
             anchors.centerIn: parent
             onSelectedDateChanged: {
                 console.log("You have selected:", selectedDate);

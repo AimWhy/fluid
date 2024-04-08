@@ -21,7 +21,7 @@ import Fluid.Controls 1.0 as FluidControls
 
 Item {
     //! [action]
-    FluidControls.Action {
+    Fluid.Action {
         id: copyAction
         text: qsTr("&Copy")
         icon.source: FluidCore.Utils.iconUrl("content/content_copy")

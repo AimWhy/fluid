@@ -26,6 +26,7 @@ class ControlsUtils : public QObject
 public:
     explicit ControlsUtils(const QUrl &baseUrl, QObject *parent = nullptr);
 
+    Q_INVOKABLE qreal scale(qreal percent, qreal start, qreal end);
     Q_INVOKABLE QUrl iconUrl(const QString &name);
 
     static ControlsUtils *create(QQmlEngine *engine, QJSEngine *jsEngine);
