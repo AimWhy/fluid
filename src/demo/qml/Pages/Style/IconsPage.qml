@@ -14,12 +14,11 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 import Fluid.Demo as FluidDemo
 
-Page {
+Fluid.Page {
     Material.theme: lightRadio.checked ? Material.Light : Material.Dark
 
     Row {
@@ -31,13 +30,13 @@ Page {
 
         spacing: 16
 
-        RadioButton {
+        Fluid.RadioButton {
             id: lightRadio
             text: qsTr("Light")
             checked: true
         }
 
-        RadioButton {
+        Fluid.RadioButton {
             id: darkRadio
             text: qsTr("Dark")
         }
@@ -48,7 +47,7 @@ Page {
         anchors.left: themeRow.right
     }
 
-    ScrollView {
+    Fluid.ScrollView {
         id: scrollView
         anchors { left: parent.left; right: parent.right; top: searchBar.bottom; bottom: parent.bottom }
 
@@ -80,8 +79,8 @@ Page {
                                 visible: model.name.indexOf(searchBar.searchText) !== -1
                                 size: 48
 
-                                ToolTip.visible: iconMouseArea.containsMouse
-                                ToolTip.text: entry.currentCategory + "/" + model.name
+                                Fluid.ToolTip.visible: iconMouseArea.containsMouse
+                                Fluid.ToolTip.text: entry.currentCategory + "/" + model.name
 
                                 MouseArea {
                                     id: iconMouseArea

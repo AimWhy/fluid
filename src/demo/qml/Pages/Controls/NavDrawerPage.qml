@@ -13,12 +13,11 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import Fluid
+import Fluid as Fluid
 import "../.."
 
 Item {
-    Button {
+    Fluid.Button {
         anchors.centerIn: parent
         text: qsTr("Open")
         onClicked: navDrawer.open()

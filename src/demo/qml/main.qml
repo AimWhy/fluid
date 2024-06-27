@@ -14,7 +14,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 import Fluid as Fluid
@@ -50,7 +49,7 @@ Fluid.ApplicationWindow {
             height: navDrawer.mobileAspect ? 200 : 0
         }
 
-        ScrollView {
+        Fluid.ScrollView {
             anchors.fill: parent
 
             clip: true
@@ -161,7 +160,7 @@ Fluid.ApplicationWindow {
             }
         ]
 
-        StackView {
+        Fluid.StackView {
             id: stackView
             anchors.fill: parent
             initialItem: Fluid.Placeholder {

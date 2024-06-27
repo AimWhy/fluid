@@ -1,5 +1,5 @@
 /*
- * This file is part of Fluid.
+ * This file is part of 
  *
  * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
@@ -13,36 +13,35 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import Fluid as Fluid
+import Fluid
 import "../.." as Components
 
 Components.StyledPageTwoColumns {
     leftColumn: Column {
         anchors.centerIn: parent
 
-        Fluid.TitleLabel {
+        TitleLabel {
             text: qsTr("Enabled")
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("device/airplanemode_active")
             mini: false
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("navigation/check")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("navigation/check")
             highlighted: true
             mini: false
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("device/airplanemode_active")
             mini: true
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("navigation/check")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("navigation/check")
             highlighted: true
             mini: true
         }
@@ -51,31 +50,31 @@ Components.StyledPageTwoColumns {
     rightColumn: Column {
         anchors.centerIn: parent
 
-        Fluid.TitleLabel {
+        TitleLabel {
             text: qsTr("Disabled")
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("device/airplanemode_active")
             mini: false
             enabled: false
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("navigation/check")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("navigation/check")
             highlighted: true
             mini: false
             enabled: false
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("device/airplanemode_active")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("device/airplanemode_active")
             mini: true
             enabled: false
         }
 
-        Fluid.FloatingActionButton {
-            icon.source: Fluid.Utils.iconUrl("navigation/check")
+        FloatingActionButton {
+            icon.source: Utils.iconUrl("navigation/check")
             highlighted: true
             mini: true
             enabled: false

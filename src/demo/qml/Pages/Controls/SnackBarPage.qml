@@ -13,28 +13,27 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import Fluid as Fluid
 
 Item {
     Column {
         anchors.centerIn: parent
 
-        TextField {
+        Fluid.TextField {
             id: textField
             placeholderText: qsTr("Text")
             text: qsTr("Marked as read")
             width: 300
         }
 
-        TextField {
+        Fluid.TextField {
             id: buttonTextField
             placeholderText: qsTr("Button Text")
             text: qsTr("Undo")
             width: 300
         }
 
-        Switch {
+        Fluid.Switch {
             text: qsTr("Full Width")
             checked: snackBar.fullWidth
             onCheckedChanged: snackBar.fullWidth = checked
@@ -43,12 +42,12 @@ Item {
         Row {
             spacing: 8
 
-            Button {
+            Fluid.Button {
                 text: qsTr("Open")
                 onClicked: snackBar.open(textField.text, buttonTextField.text)
             }
 
-            Button {
+            Fluid.Button {
                 text: qsTr("Close")
                 onClicked: snackBar.close()
             }

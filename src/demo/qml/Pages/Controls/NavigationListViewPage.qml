@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import Fluid as Fluid
 import "../.."
 
@@ -42,12 +41,12 @@ Item {
     Column {
         anchors.centerIn: parent
 
-        CheckBox {
+        Fluid.CheckBox {
             id: autoHighlightCheckBox
             text: qsTr("Auto highlight")
         }
 
-        Button {
+        Fluid.Button {
             text: navListView.opened ? qsTr("Close") : qsTr("Open")
             onClicked: navListView.opened ? navListView.close() : navListView.open()
         }

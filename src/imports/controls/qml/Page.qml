@@ -14,11 +14,11 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls as C
 import QtQuick.Controls.Material
 import Fluid as Fluid
 
-Page {
+C.Page {
     id: page
 
     default property alias data: content.data

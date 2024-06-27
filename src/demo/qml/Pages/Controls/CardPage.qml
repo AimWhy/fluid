@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import Fluid
 import "../.." as Components
 

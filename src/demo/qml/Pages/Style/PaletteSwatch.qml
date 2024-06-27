@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 import "../.."
@@ -32,7 +31,7 @@ Column {
         height: 80
         color: paletteColor
 
-        Label {
+        Fluid.Label {
             anchors {
                 top: parent.top
                 left: parent.left
@@ -92,7 +91,7 @@ Column {
                 height: 40
                 color: Material.color(paletteIndex, model.shadeIndex)
 
-                Label {
+                Fluid.Label {
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
@@ -103,7 +102,7 @@ Column {
                     text: model.name
                 }
 
-                Label {
+                Fluid.Label {
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
@@ -145,7 +144,7 @@ Column {
                 height: 40
                 color: Material.color(paletteIndex, model.shadeIndex)
 
-                Label {
+                Fluid.Label {
                     anchors {
                         left: parent.left
                         verticalCenter: parent.verticalCenter
@@ -156,7 +155,7 @@ Column {
                     text: model.name
                 }
 
-                Label {
+                Fluid.Label {
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter

@@ -14,7 +14,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import Fluid
 import "../.." as Components

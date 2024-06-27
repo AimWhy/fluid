@@ -14,19 +14,18 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 
 Page {
     header: Row {
-        RadioButton {
+        Fluid.RadioButton {
             id: lightRadio
             text: qsTr("Light")
             checked: true
         }
 
-        RadioButton {
+        Fluid.RadioButton {
             id: darkRadio
             text: qsTr("Dark")
         }
@@ -34,7 +33,7 @@ Page {
 
     Material.theme: lightRadio.checked ? Material.Light : Material.Dark
 
-    ScrollView {
+    Fluid.ScrollView {
         id: scrollView
         anchors.fill: parent
         clip: true
@@ -43,7 +42,7 @@ Page {
             anchors.fill: parent
             anchors.margins: 16
 
-            Label {
+            Fluid.Label {
                 id: warningLabel
                 width: parent.width
                 text: qsTr("This feature might not be available on your platform, as it depends on " +

@@ -13,27 +13,26 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
-import Fluid
+import Fluid as Fluid
 import "../.." as Components
 
 Components.StyledPageTwoColumns {
     leftColumn: ColumnLayout {
         anchors.centerIn: parent
 
-        TitleLabel {
+        Fluid.TitleLabel {
             text: qsTr("Enabled")
 
             Layout.alignment: Qt.AlignHCenter
         }
 
-        Switch {
+        Fluid.Switch {
             checked: true
             text: checked ? qsTr("On") : qsTr("Off")
         }
 
-        Switch {
+        Fluid.Switch {
             checked: false
             checkable: false
             text: qsTr("Off")
@@ -43,19 +42,19 @@ Components.StyledPageTwoColumns {
     rightColumn: ColumnLayout {
         anchors.centerIn: parent
 
-        TitleLabel {
+        Fluid.TitleLabel {
             text: qsTr("Disabled")
 
             Layout.alignment: Qt.AlignHCenter
         }
 
-        Switch {
+        Fluid.Switch {
             enabled: false
             checked: true
             text: checked ? qsTr("On") : qsTr("Off")
         }
 
-        Switch {
+        Fluid.Switch {
             enabled: false
             checked: false
             checkable: false

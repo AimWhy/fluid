@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 import "../.."
@@ -27,7 +26,7 @@ Item {
             color: Material.accentColor
         }
     }
-    Button {
+    Fluid.Button {
         anchors.centerIn: parent
         text: qsTr("Toggle")
         onClicked: {

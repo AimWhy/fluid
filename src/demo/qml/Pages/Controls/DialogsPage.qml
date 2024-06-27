@@ -13,19 +13,18 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import Fluid as Fluid
 
 Item {
     Column {
         anchors.centerIn: parent
 
-        Button {
+        Fluid.Button {
             text: qsTr("Alert")
             onClicked: alert.open()
         }
 
-        Button {
+        Fluid.Button {
             text: qsTr("Input")
             onClicked: input.open()
         }
@@ -38,7 +37,7 @@ Item {
         y: (parent.height - height) / 2
 
         text: qsTr("Discard draft?")
-        standardButtons: Dialog.Discard | Dialog.Cancel
+        standardButtons: Fluid.Dialog.Discard | Fluid.Dialog.Cancel
     }
 
     Fluid.InputDialog {

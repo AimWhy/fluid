@@ -13,17 +13,16 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import Fluid
+import Fluid as Fluid
 import "../.."
 
 Flickable {
     clip: true
     contentHeight: Math.max(layout.implicitHeight, height)
 
-    ScrollBar.vertical: ScrollBar {}
+    Fluid.ScrollBar.vertical: Fluid.ScrollBar {}
 
-    ColumnFlow {
+    Fluid.ColumnFlow {
         id: layout
 
         anchors.fill: parent

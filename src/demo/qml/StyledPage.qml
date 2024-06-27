@@ -13,8 +13,8 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
+import Fluid
 
 Page {
     Material.theme: themeCombo.currentIndex === 0 ? Material.Light : Material.Dark

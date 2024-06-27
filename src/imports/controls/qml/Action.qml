@@ -14,9 +14,9 @@
  */
 
 import QtQuick
-import QtQuick.Controls as QQC2
+import QtQuick.Controls as C
 
-QQC2.Action {
+C.Action {
     id: action
 
     property string toolTip

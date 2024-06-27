@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 import "../.." as Components
@@ -21,19 +20,19 @@ import "../.." as Components
 Components.StyledPage {
     id: page
 
-    ScrollView {
+    Fluid.ScrollView {
         anchors.fill: parent
         clip: true
 
         Column {
             spacing: 16
 
-            Button {
+            Fluid.Button {
                 text: qsTr("Landscape")
                 onClicked: datePickerDialogLandscape.open()
             }
 
-            Button {
+            Fluid.Button {
                 text: qsTr("Portrait")
                 onClicked: datePickerDialogPortrait.open()
             }

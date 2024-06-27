@@ -12,7 +12,6 @@
  * $END_LICENSE$
  */
 
-import QtQuick.Controls
 import Fluid as Fluid
 
 Fluid.Page {
@@ -26,7 +25,7 @@ Fluid.Page {
         }
     ]
 
-    Label {
+    Fluid.Label {
         anchors.centerIn: parent
         text: "Testing"
     }

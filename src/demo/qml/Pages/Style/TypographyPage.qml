@@ -14,69 +14,68 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
-import Fluid
+import Fluid as Fluid
 import "../.."
 
 Flickable {
     clip: true
     contentHeight: Math.max(layout.implicitHeight, height)
 
-    ScrollBar.vertical: ScrollBar {}
+    Fluid.ScrollBar.vertical: Fluid.ScrollBar {}
 
     ColumnLayout {
         id: layout
         anchors.fill: parent
-        anchors.margins: Units.mediumSpacing
-        spacing: Units.smallSpacing
+        anchors.margins: Fluid.Units.mediumSpacing
+        spacing: Fluid.Units.smallSpacing
 
-        DisplayLabel {
+        Fluid.DisplayLabel {
             level: 4
             text: "Display 4"
         }
 
-        DisplayLabel {
+        Fluid.DisplayLabel {
             level: 3
             text: "Display 3"
         }
 
-        DisplayLabel {
+        Fluid.DisplayLabel {
             level: 2
             text: "Display 2"
         }
 
-        DisplayLabel {
+        Fluid.DisplayLabel {
             level: 1
             text: "Display 1"
         }
 
-        HeadlineLabel {
+        Fluid.HeadlineLabel {
             text: "Headline"
         }
 
-        TitleLabel {
+        Fluid.TitleLabel {
             text: "Title"
         }
 
-        SubheadingLabel {
+        Fluid.SubheadingLabel {
             text: "Subheading"
         }
 
-        BodyLabel {
+        Fluid.BodyLabel {
             level: 2
             text: "Body 2"
         }
 
-        BodyLabel {
+        Fluid.BodyLabel {
             level: 1
             text: "Body 1"
         }
 
-        CaptionLabel {
+        Fluid.CaptionLabel {
             text: "Caption"
         }
 
-        Label {
+        Fluid.Label {
             text: "Label"
         }
 

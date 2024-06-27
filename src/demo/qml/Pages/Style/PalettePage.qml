@@ -13,17 +13,16 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Fluid
+import Fluid as Fluid
 import "../.."
 
 Flickable {
     clip: true
     contentHeight: Math.max(grid.implicitHeight, height)
 
-    ScrollBar.vertical: ScrollBar {}
+    Fluid.ScrollBar.vertical: Fluid.ScrollBar {}
 
     property color whiteColor: Qt.rgba(255, 255, 255, 1)
     property color blackColor: Qt.rgba(0, 0, 0, 1)
@@ -35,14 +34,14 @@ Flickable {
             top: parent.top
             bottom: parent.bottom
             horizontalCenter: parent.horizontalCenter
-            topMargin: Units.largeSpacing
+            topMargin: Fluid.Units.largeSpacing
         }
 
         width: parent.width * 0.8
 
         columns: width / 300
-        rowSpacing: Units.smallSpacing
-        columnSpacing: Units.smallSpacing
+        rowSpacing: Fluid.Units.smallSpacing
+        columnSpacing: Fluid.Units.smallSpacing
 
         Repeater {
             model: ListModel {

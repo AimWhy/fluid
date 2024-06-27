@@ -1,5 +1,5 @@
 /*
- * This file is part of Fluid.
+ * This file is part of 
  *
  * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
  *
@@ -13,7 +13,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Controls.Material
 import Fluid as Fluid
 
@@ -21,22 +20,22 @@ Item {
     Column {
         anchors.centerIn: parent
 
-        Button {
+        Fluid.Button {
             text: qsTr("List-style BottomSheet")
             onClicked: listBottomSheet.open()
         }
 
-        Button {
+        Fluid.Button {
             text: qsTr("Long List-style BottomSheet")
             onClicked: longListBottomSheet.open()
         }
 
-        Button {
+        Fluid.Button {
             text: qsTr("Grid-style BottomSheet")
             onClicked: gridBottomSheet.open()
         }
 
-        Button {
+        Fluid.Button {
             text: qsTr("Custom BottomSheet")
             onClicked: customBottomSheet.open()
         }
@@ -276,7 +275,7 @@ Item {
         Column {
             width: parent.width
 
-            Pane {
+            Fluid.Pane {
                 width: parent.width
                 padding: 16
 
@@ -296,7 +295,7 @@ Item {
                 Material.background: Material.color(Material.Yellow, Material.Shade800)
             }
 
-            Pane {
+            Fluid.Pane {
                 width: parent.width
                 implicitHeight: 100
                 padding: 16

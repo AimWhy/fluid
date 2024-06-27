@@ -14,12 +14,11 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import Fluid as Fluid
 import "../.."
 
-Page {
-    ScrollView {
+Fluid.Page {
+    Fluid.ScrollView {
         anchors.fill: parent
         clip: true
 
@@ -70,7 +69,7 @@ Page {
 
             Fluid.ListItem {
                 text: "ListItem with custom rightItem"
-                rightItem: Switch {
+                rightItem: Fluid.Switch {
                     anchors.centerIn: parent
                     checked: true
                 }
@@ -78,7 +77,7 @@ Page {
 
             Fluid.ListItem {
                 text: "ListItem with custom secondaryItem"
-                secondaryItem: Slider {
+                secondaryItem: Fluid.Slider {
                     width: parent.width
                     from: 0
                     to: 100
