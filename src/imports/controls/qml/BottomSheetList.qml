@@ -26,7 +26,7 @@ BottomSheet {
     height: Math.min(implicitHeight, maxHeight)
     implicitHeight: listViewContainer.implicitHeight + (header.visible ? header.height : 0)
 
-    padding: 16
+    padding: 0
 
     Column {
         id: column

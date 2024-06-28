@@ -20,11 +20,6 @@ import Fluid as Fluid
 Drawer {
     id: bottomSheet
 
-    /*!
-        \internal
-    */
-    default property alias content: containerPane.data
-
     property int maxHeight: ApplicationWindow.contentItem.height - ApplicationWindow.header.height
 
     modal: true
@@ -32,11 +27,4 @@ Drawer {
 
     width: parent.width
     height: Math.min(containerPane.childrenRect.height, maxHeight)
-
-    Pane {
-        id: containerPane
-
-        width: parent.width
-        height: parent.height
-    }
 }
