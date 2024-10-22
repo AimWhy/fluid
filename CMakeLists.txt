@@ -30,9 +30,6 @@ include(ECMQmlModule)
 ## Features:
 include(features.cmake)
 
-## Project setup:
-qt6_standard_project_setup(REQUIRES 6.6)
-
 ## Disable use of C++ API deprecated in Qt 5.15
 add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
@@ -43,7 +40,7 @@ endif()
 
 ## Add subdirectories:
 if(FLUID_WITH_DOCUMENTATION)
-    #add_subdirectory(doc)
+    add_subdirectory(doc)
 endif()
 if(FLUID_WITH_QML_MODULES)
     add_subdirectory(src/imports/controls)

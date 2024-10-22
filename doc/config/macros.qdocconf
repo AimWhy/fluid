@@ -1,2 +1,0 @@
-macro.FLUID = "Fluid"
-macro.fluidversion = $FLUID_VERSION

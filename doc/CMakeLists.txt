@@ -1,21 +1,25 @@
-include(LiriQDoc)
+if(DOXYGEN_FOUND)
+    # Set the output directory for Doxygen documentation
+    set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/output)
 
-if(Qt5Core_VERSION VERSION_GREATER_EQUAL "5.12.0")
-    set(_qtquickcontrols_name "qtquickcontrols")
-else()
-    set(_qtquickcontrols_name "qtquickcontrols2")
-endif()
+    # Ensure the output directory exists
+    #file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
 
-liri_install_doc(
-    "${CMAKE_CURRENT_SOURCE_DIR}/fluid.qdocconf"
-    OUTPUT_DIRECTORY_VARIABLE
-        _doc_output_dir
-    ENVIRONMENT
-        QTQUICKCONTROLS_NAME="${_qtquickcontrols_name}"
-        FLUID_VERSION="${PROJECT_VERSION}"
-        FLUID_VERSION_TAG="${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
-        FLUID_BUILD_DIR="${CMAKE_CURRENT_BINARY_DIR}"
-)
-if(_doc_output_dir)
-    install(DIRECTORY "${_doc_output_dir}/" DESTINATION "${INSTALL_DOCDIR}/fluid/html")
+    # Configure Doxyfile
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+        ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        @ONLY
+    )
+
+    # Doxygen custom targets
+    add_custom_target(doc_doxygen ALL
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${DOXYGEN_OUTPUT_DIR}
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating Doxygen documentation" VERBATIM
+    )
+
+    install(DIRECTORY ${DOXYGEN_OUTPUT_DIR}/
+            DESTINATION ${KDE_INSTALL_DATADIR}/doc/${PROJECT_NAME})
 endif()
