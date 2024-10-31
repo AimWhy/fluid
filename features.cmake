@@ -5,7 +5,7 @@
 include(FeatureSummary)
 
 ## Find Qt:
-find_package(Qt6
+find_package(Qt6 "6.7.0"
     REQUIRED
     COMPONENTS
         Core
