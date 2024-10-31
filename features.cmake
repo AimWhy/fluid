@@ -17,6 +17,11 @@ find_package(Qt6
         QuickTest
 )
 
+## Qt policies:
+if(QT_KNOWN_POLICY_QTP0004)
+    qt6_policy(SET QTP0004 NEW)
+endif()
+
 #### Features
 
 # Documentation
