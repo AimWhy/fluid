@@ -14,57 +14,17 @@
 
 #include "controlsutils.h"
 
-/*!
-    \qmltype Fluid.Controls::Utils
-    \inqmlmodule Fluid
-    \ingroup fluid
-
-    \brief A collection of helpful utility methods.
-*/
 ControlsUtils::ControlsUtils(const QUrl &baseUrl, QObject *parent)
     : QObject(parent)
     , m_baseUrl(baseUrl)
 {
 }
 
-/*!
-    \qmlmethod real Fluid::Utils::scale(real percent, real start, real end)
-
-    Scale \a percent in the range between \a start and \a end.
-*/
 qreal ControlsUtils::scale(qreal percent, qreal start, qreal end)
 {
     return start + ((end - start) * (percent / 100));
 }
 
-/*!
-    \qmlmethod url Fluid::Utils::iconUrl(string name)
-
-    Returns an URL for the Material Design icon \a name.
-    Use this URL with Image or icon grouped property with controls.
-
-    \code
-    import QtQuick
-    import Fluid as Fluid
-
-    Image {
-        source: Fluid.Utils.iconUrl("action/alarm")
-        width: 64
-        height: 64
-    }
-    \endcode
-
-    \code
-    import QtQuick
-    import QtQuick.Controls
-    import Fluid as Fluid
-
-    Button {
-        icon.source: Fluid.Utils.iconUrl("action/alarm")
-        text: qsTr("Alarm")
-    }
-    \endcode
-*/
 QUrl ControlsUtils::iconUrl(const QString &name)
 {
 #if FLUID_INSTALL_ICONS == 1

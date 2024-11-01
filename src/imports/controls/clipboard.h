@@ -18,6 +18,9 @@
 #include <QClipboard>
 #include <QtQml/qqmlregistration.h>
 
+/*!
+    \brief Clipboard.
+*/
 class Clipboard : public QObject
 {
     Q_OBJECT
@@ -26,8 +29,14 @@ class Clipboard : public QObject
 public:
     explicit Clipboard(QObject *parent = nullptr);
 
+    /*!
+        This property holds the clipboard text.
+    */
     QString text() const;
 
+    /*!
+        Clear the global clipboard contents.
+    */
     Q_INVOKABLE void clear();
 
 public Q_SLOTS:

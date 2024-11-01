@@ -17,14 +17,6 @@
 
 #include "clipboard.h"
 
-/*!
-    \qmltype Clipboard
-    \inqmlmodule Fluid
-    \ingroup fluid
-
-    \brief Clipboard.
-*/
-
 Clipboard::Clipboard(QObject *parent)
     : QObject(parent)
     , m_clipboard(QGuiApplication::clipboard())
@@ -32,11 +24,6 @@ Clipboard::Clipboard(QObject *parent)
     connect(m_clipboard, &QClipboard::dataChanged, this, &Clipboard::textChanged);
 }
 
-/*!
-    \qmlproperty string Clipboard::text
-
-    This property holds the clipboard text.
-*/
 QString Clipboard::text() const
 {
     return m_clipboard->text();
@@ -47,11 +34,6 @@ void Clipboard::setText(const QString &text)
     m_clipboard->setText(text);
 }
 
-/*!
-    \qmlmethod void Clipboard::clear()
-
-    Clear the global clipboard contents.
-*/
 void Clipboard::clear()
 {
     m_clipboard->clear();
