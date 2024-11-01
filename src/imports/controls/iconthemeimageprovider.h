@@ -21,5 +21,5 @@ class IconThemeImageProvider : public QQuickImageProvider
 public:
     IconThemeImageProvider();
 
-    QPixmap requestPixmap(const QString &id, QSize *realSize, const QSize &requestedSize);
+    QPixmap requestPixmap(const QString &id, QSize *realSize, const QSize &requestedSize) override;
 };
