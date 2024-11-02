@@ -4,22 +4,24 @@
 ## Enable feature summary at the end of the configure run:
 include(FeatureSummary)
 
-## Find Qt:
-find_package(Qt6 "6.7.0"
-    REQUIRED
-    COMPONENTS
-        Core
-        Gui
-        Svg
-        Qml
-        Quick
-        QuickControls2
-        QuickTest
-)
+if(FLUID_WITH_QML_MODULES)
+    ## Find Qt:
+    find_package(Qt6 "6.7.0"
+        REQUIRED
+        COMPONENTS
+            Core
+            Gui
+            Svg
+            Qml
+            Quick
+            QuickControls2
+            QuickTest
+    )
 
-## Qt policies:
-if(QT_KNOWN_POLICY_QTP0004)
-    qt6_policy(SET QTP0004 NEW)
+    ## Qt policies:
+    if(QT_KNOWN_POLICY_QTP0004)
+        qt6_policy(SET QTP0004 NEW)
+    endif()
 endif()
 
 #### Features
