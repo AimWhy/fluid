@@ -18,5 +18,5 @@ if(DOXYGEN_FOUND)
     )
 
     install(DIRECTORY ${DOXYGEN_OUTPUT_DIR}/
-            DESTINATION ${KDE_INSTALL_DATADIR}/doc/${PROJECT_NAME})
+            DESTINATION ${KDE_INSTALL_DATADIR}/doc/fluid)
 endif()
