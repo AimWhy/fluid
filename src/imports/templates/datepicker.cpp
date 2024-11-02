@@ -14,77 +14,13 @@
 
 #include "datepicker.h"
 
-/*!
-    \qmltype DatePicker
-    \inherits QQuickItem
-    \instantiates DatePicker
-    \inqmlmodule Fluid
 
-    \brief Control to select a single date.
 
-    Stand-alone control to select a single date from a calendar.
 
-    \code
-    import QtQuick
-    import Fluid
 
-    Item {
-        width: 600
-        height: 600
 
-        DatePicker {
-            anchors.centerIn: parent
-            onSelectedDateChanged: {
-                console.log("You have selected:", selectedDate);
-            }
-        }
-    }
-    \endcode
 
-    For more information you can read the
-    \l{https://material.io/guidelines/components/pickers.html}{Material Design guidelines}.
-*/
 
-/*!
-    \qmlproperty Locale Fluid.Controls::DatePicker::locale
-
-    This property holds the locale of the control.
-*/
-
-/*!
-    \qmlproperty enumeration Fluid.Controls::DatePicker::orientation
-
-    This property holds the date picker orientation.
-    The default value is automatically selected based on the device orientation.
-
-    Possible values:
-    \value DatePicker.Landscape The date picker is landscape.
-    \value DatePicker.Portrait The date picker is portrait.
-*/
-
-/*!
-    \qmlproperty Item Fluid.Controls::DatePicker::background
-
-    This property holds the background item.
-*/
-
-/*!
-    \qmlproperty Item Fluid.Controls::DatePicker::header
-
-    This property holds the header item.
-*/
-
-/*!
-    \qmlproperty Item Fluid.Controls::DatePicker::selector
-
-    This property holds the selector item.
-*/
-
-/*!
-    \qmlproperty Item Fluid.Controls::DatePicker::footer
-
-    This property holds the footer item.
-*/
 
 DatePicker::DatePicker(QQuickItem *parent)
     : Picker(parent)
@@ -94,17 +30,6 @@ DatePicker::DatePicker(QQuickItem *parent)
 {
 }
 
-/*!
-    \qmlproperty enumeration Fluid.Controls::DatePicker::mode
-
-    This property holds the current selection mode.
-
-    It is changed by the user, clicking on the year or calendar.
-
-    Possible values:
-    \value DatePicker.Year The user is selecting the year.
-    \value DatePicker.Month The user is selecting the month.
-*/
 DatePicker::Mode DatePicker::mode() const
 {
     return m_mode;
@@ -119,11 +44,6 @@ void DatePicker::setMode(DatePicker::Mode mode)
     Q_EMIT modeChanged();
 }
 
-/*!
-    \qmlproperty bool Fluid.Controls::DatePicker::dayOfWeekRowVisible
-
-    This property determines the visibility of the day of week row.
-*/
 bool DatePicker::dayOfWeekRowVisible() const
 {
     return m_dayOfWeekRowVisible;
@@ -138,11 +58,6 @@ void DatePicker::setDayOfWeekRowVisible(bool value)
     Q_EMIT dayOfWeekRowVisibleChanged();
 }
 
-/*!
-    \qmlproperty bool Fluid.Controls::DatePicker::weekNumberVisible
-
-    This property determines the visibility of the week number column.
-*/
 bool DatePicker::weekNumberVisible() const
 {
     return m_weekNumberVisible;
@@ -157,11 +72,6 @@ void DatePicker::setWeekNumberVisible(bool value)
     Q_EMIT weekNumberVisibleChanged();
 }
 
-/*!
-    \qmlproperty date Fluid.Controls::DatePicker::from
-
-    This property holds the start date.
-*/
 QDate DatePicker::from() const
 {
     return m_from;
@@ -181,11 +91,7 @@ void DatePicker::resetFrom()
     setFrom(QDate(1, 1, 1));
 }
 
-/*!
-    \qmlproperty date Fluid.Controls::DatePicker::to
 
-    This property holds the end date.
-*/
 QDate DatePicker::to() const
 {
     return m_to;
@@ -205,12 +111,6 @@ void DatePicker::resetTo()
     setTo(QDate(275759, 9, 25));
 }
 
-/*!
-    \qmlproperty date Fluid.Controls::DatePicker::selectedDate
-
-    This property holds the date that has been selected by the user.
-    The default value is the current date.
-*/
 QDate DatePicker::selectedDate() const
 {
     return m_selectedDate;

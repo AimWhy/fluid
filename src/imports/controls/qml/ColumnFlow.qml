@@ -16,13 +16,9 @@
 import QtQuick
 
 /*!
-    \qmltype ColumnFlow
-    \inqmlmodule Fluid
-    \ingroup fluid
-
     \brief Automatically position children in columns.
 
-    \code
+    \code{.qml}
     import QtQuick
     import Fluid as Fluid
 
@@ -51,24 +47,18 @@ Item {
     id: columnFlow
 
     /*!
-        \qmlproperty int columnWidth
-
         Column width.
         This property is \c 100 by default.
     */
     property int columnWidth: 100
 
     /*!
-        \qmlproperty int columns
-
         Number of columns.
         By default it fits as many columns as possible.
     */
     property int columns: Math.max(0, Math.floor(width / columnWidth))
 
     /*!
-        \qmlproperty any model
-
         The model providing data to the column flow.
 
         This property can be set to any of the supported \l {qml-data-models}{data models}.
@@ -78,8 +68,6 @@ Item {
     property alias model: repeater.model
 
     /*!
-        \qmlproperty Component delegate
-
         The delegate provides a template defining each item istantiated by the column flow.
 
         \sa Repeater::delegate
@@ -87,15 +75,11 @@ Item {
     property alias delegate: repeater.delegate
 
     /*!
-        \qmlproperty int contentHeight
-
         Content height.
     */
     property int contentHeight: 0
 
     /*!
-        \qmlproperty bool repeaterCompleted
-
         This property holds whether the layout is done.
     */
     readonly property alias repeaterCompleted: __private.repeaterCompleted
@@ -114,8 +98,6 @@ Item {
     }
 
     /*!
-        \qmlmethod void ColumnFlow::updateWidths()
-
         Set the width of all delegates.
     */
     function updateWidths() {
@@ -134,8 +116,6 @@ Item {
     }
 
     /*!
-        \qmlmethod void ColumnFlow::reEvalColumns()
-
         Relayout the columns.
     */
     function reEvalColumns() {

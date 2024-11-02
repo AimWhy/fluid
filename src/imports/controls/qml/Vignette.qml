@@ -15,10 +15,6 @@
 import QtQuick
 
 /*!
-  \qmltype Vignette
-  \inqmlmodule Fluid
-  \ingroup fluid
-
   \brief Vignette effect.
 */
 Item {

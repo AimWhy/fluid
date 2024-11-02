@@ -16,10 +16,6 @@ import QtQuick
 import Fluid
 
 /*!
-   \qmltype Elevation
-   \inqmlmodule Fluid
-   \ingroup fluid
-
    \brief Material Design elevation effect.
 
    An effect for standard Material Design elevation shadows.

@@ -17,18 +17,12 @@ import QtQuick
 import Qt5Compat.GraphicalEffects
 
 /*!
-  \qmltype CircleMask
-  \inqmlmodule Fluid
-  \ingroup fluid
-
-  \brief Circular mask.
+    \brief Circular mask.
 */
 Item {
     id: item
 
     /*!
-        \qmlproperty variant source
-
         This property defines the source item that is going to be masked.
     */
     property alias source: mask.source

@@ -16,13 +16,9 @@
 import QtQuick
 
 /*!
-    \qmltype AutomaticGrid
-    \inqmlmodule Fluid
-    \ingroup fluid
-
     \brief Lay out children in a grid that automatically fits the available space.
 
-    \code
+    \code{.qml}
     import QtQuick
     import Fluid as Fluid
 
@@ -52,9 +48,6 @@ Grid {
     id: grid
 
     /*!
-        \qmlproperty Component delegate
-        \default
-
         The delegate provides a template defining each item istantiated by the grid.
 
         \sa Repeater::delegate
@@ -62,22 +55,16 @@ Grid {
     default property alias delegate: repeater.delegate
 
     /*!
-        \qmlproperty real cellWidth
-
         Cell width.
     */
     property real cellWidth
 
     /*!
-        \qmlproperty real cellHeight
-
         Cell height.
     */
     property real cellHeight
 
     /*!
-        \qmlproperty any model
-
         The model providing data to the grid.
 
         This property can be set to any of the supported \l {qml-data-models}{data models}.
@@ -87,22 +74,16 @@ Grid {
     property alias model: repeater.model
 
     /*!
-        \qmlproperty real widthOverride
-
         Maximum width.
     */
     property real widthOverride: parent.width
 
     /*!
-        \qmlproperty real heightOverride
-
         Maximum height.
     */
     property real heightOverride: parent.height
 
     /*!
-        \qmlproperty real minColumnSpacing
-
         Minimum spacing between columns.
     */
     property real minColumnSpacing

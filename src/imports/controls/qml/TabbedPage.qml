@@ -180,18 +180,14 @@ Fluid.Page {
     }
 
     /*!
-        \qmlmethod void TabbedPage::addTab(Tab tab)
-
         Add a \a tab programmatically to the page.
-     */
+    */
     function addTab(tab) {
         swipeView.addItem(tab);
         swipeView.setCurrentIndex(swipeView.count - 1);
     }
 
     /*!
-        \qmlmethod void TabbedPage::removeTab(int index)
-
         Remove the tab with \a index programmatically.
     */
     function removeTab(index) {
@@ -200,8 +196,6 @@ Fluid.Page {
     }
 
     /*!
-        \qmlmethod Tab TabbedPage::getTab(int index)
-
         Return the tab with \a index.
     */
     function getTab(index) {
@@ -209,8 +203,6 @@ Fluid.Page {
     }
 
     /*!
-        \qmlmethod void TabbedPage::setCurrentIndex(int index)
-
         Select the tab that correspond to \a index.
     */
     function setCurrentIndex(index) {
@@ -218,8 +210,6 @@ Fluid.Page {
     }
 
     /*!
-        \qmlmethod void TabbedPage::incrementCurrentIndex()
-
         Increment current index.
 
         \sa currentIndex
@@ -229,8 +219,6 @@ Fluid.Page {
     }
 
     /*!
-        \qmlmethod void TabbedPage::decrementCurrentIndex()
-
         Decrement current index.
 
         \sa currentIndex

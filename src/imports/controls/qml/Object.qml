@@ -15,16 +15,12 @@
 import QtQuick
 
 /*!
-    \qmltype Object
-    \inqmlmodule Fluid
-    \ingroup fluid
-
     \brief A \l QtObject with children.
 
     The \l Object type is a non-visual element that extends \l QtObject
     with the ability to hold children objects.
 
-   \qml
+   \code{.qml}
    import QtQuick
    import Fluid
 
@@ -32,7 +28,7 @@ import QtQuick
        QtObject {}
        QtObject {}
    }
-   \endqml
+   \endcode
 */
 QtObject {
     id: object

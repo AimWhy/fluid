@@ -20,11 +20,34 @@
 class Picker : public QQuickItem
 {
     Q_OBJECT
+    /*!
+        This property holds the locale of the control.
+    */
     Q_PROPERTY(QLocale locale READ locale WRITE setLocale NOTIFY localeChanged FINAL)
+    /*!
+        This property holds the date picker orientation.
+        The default value is automatically selected based on the device orientation.
+
+        Possible values:
+          - DatePicker.Landscape The date picker is landscape.
+          - DatePicker.Portrait The date picker is portrait.
+    */
     Q_PROPERTY(Orientation orientation READ orientation WRITE setOrientation RESET resetOrientation NOTIFY orientationChanged FINAL)
+    /*!
+        This property holds the background item.
+    */
     Q_PROPERTY(QQuickItem *background READ background WRITE setBackground NOTIFY backgroundChanged FINAL)
+    /*!
+        This property holds the header item.
+    */
     Q_PROPERTY(QQuickItem *header READ header WRITE setHeader NOTIFY headerChanged FINAL)
+    /*!
+        This property holds the selector item.
+    */
     Q_PROPERTY(QQuickItem *selector READ selector WRITE setSelector NOTIFY selectorChanged FINAL)
+    /*!
+        This property holds the footer item.
+    */
     Q_PROPERTY(QQuickItem *footer READ footer WRITE setFooter NOTIFY footerChanged FINAL)
     Q_DISABLE_COPY(Picker)
 public:

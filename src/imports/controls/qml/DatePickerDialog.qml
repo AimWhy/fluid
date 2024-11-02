@@ -18,10 +18,6 @@ import QtQuick.Controls.Material
 import Fluid as Fluid
 
 /*!
-    \qmltype DatePickerDialog
-    \inqmlmodule Fluid
-    \ingroup fluid
-
     \brief Dialog to select a single date.
 
     Dialog to select a single date from a calendar.

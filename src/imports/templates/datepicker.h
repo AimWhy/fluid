@@ -19,14 +19,64 @@
 
 #include "picker.h"
 
+/*!
+    \brief Control to select a single date.
+
+    Stand-alone control to select a single date from a calendar.
+
+    \code{.qml}
+    import Fluid
+    import QtQuick
+
+    Item {
+        width: 600
+        height: 600
+
+        DatePicker {
+            anchors.centerIn: parent
+            onSelectedDateChanged: {
+                console.log("You have selected:", selectedDate);
+            }
+        }
+    }
+    \endcode
+
+    For more information you can read the
+    <a href="https://material.io/guidelines/components/pickers.html">Material Design guidelines</a>.
+*/
 class DatePicker : public Picker
 {
     Q_OBJECT
+    /*!
+        This property holds the current selection mode.
+
+        It is changed by the user, clicking on the year or calendar.
+
+        Possible values:
+         - DatePicker.Year The user is selecting the year.
+         - DatePicker.Month The user is selecting the month.
+    */
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged FINAL)
+    /*!
+        This property determines the visibility of the day of week row.
+    */
     Q_PROPERTY(bool dayOfWeekRowVisible READ dayOfWeekRowVisible WRITE setDayOfWeekRowVisible NOTIFY dayOfWeekRowVisibleChanged FINAL)
+    /*!
+        This property determines the visibility of the week number column.
+    */
     Q_PROPERTY(bool weekNumberVisible READ weekNumberVisible WRITE setWeekNumberVisible NOTIFY weekNumberVisibleChanged FINAL)
+    /*!
+        This property holds the start date.
+    */
     Q_PROPERTY(QDate from READ from WRITE setFrom RESET resetFrom NOTIFY fromChanged FINAL)
+    /*!
+        This property holds the end date.
+    */
     Q_PROPERTY(QDate to READ to WRITE setTo RESET resetTo NOTIFY toChanged FINAL)
+    /*!
+        This property holds the date that has been selected by the user.
+        The default value is the current date.
+    */
     Q_PROPERTY(QDate selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged FINAL)
     QML_ELEMENT
 public:

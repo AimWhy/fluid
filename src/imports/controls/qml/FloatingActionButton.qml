@@ -20,10 +20,6 @@ import Qt5Compat.GraphicalEffects
 import Fluid as Fluid
 
 /*!
-    \qmltype FloatingActionButton
-    \inqmlmodule Fluid
-    \ingroup fluid
-
     \brief A floating action button.
 
     A floating action button represents the primary action of the current page

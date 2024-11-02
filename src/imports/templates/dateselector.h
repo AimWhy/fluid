@@ -20,6 +20,9 @@
 class DateSelector : public QQuickItem
 {
     Q_OBJECT
+    /*!
+        This property holds the locale of the control.
+    */
     Q_PROPERTY(QLocale locale READ locale WRITE setLocale NOTIFY localeChanged FINAL)
     Q_PROPERTY(QQuickItem *contentItem READ contentItem CONSTANT FINAL)
     Q_PROPERTY(QQuickItem *navigator READ navigator WRITE setNavigator NOTIFY navigatorChanged FINAL)

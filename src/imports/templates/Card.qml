@@ -16,14 +16,10 @@ import QtQuick.Controls as C
 import QtQuick.Controls.Material
 
 /*!
-    \qmltype Fluid.Templates.Card
-    \inqmlmodule Fluid.Templates
-    \ingroup fluidtemplates
-
     \brief Cards display content composed of different elements.
 
     For more information you can read the
-    \l{https://material.io/guidelines/components/cards.html}{Material Design guidelines}.
+    <a href="https://material.io/guidelines/components/cards.html">Material Design guidelines</a>.
 */
 C.Pane {
     padding: 0
