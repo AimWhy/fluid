@@ -1,56 +1,75 @@
 # SPDX-FileCopyrightText: 2023 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
 # SPDX-License-Identifier: BSD-3-Clause
 
+#### Features
+
 ## Enable feature summary at the end of the configure run:
 include(FeatureSummary)
 
-if(FLUID_WITH_QML_MODULES)
-    ## Find Qt:
-    find_package(Qt6 "6.7.0"
-        REQUIRED
-        COMPONENTS
-            Core
-            Gui
-            GuiPrivate
-            Svg
-            Qml
-            Quick
-            QuickControls2
-            QuickTest
-    )
-
-    ## Qt policies:
-    if(QT_KNOWN_POLICY_QTP0004)
-        qt6_policy(SET QTP0004 NEW)
-    endif()
-endif()
-
-#### Features
-
 # Documentation
-option(FLUID_WITH_DOCUMENTATION "Build documentation" ON)
+option(FLUID_WITH_DOCUMENTATION "Build documentation" OFF)
 if(FLUID_WITH_DOCUMENTATION)
     find_package(Doxygen QUIET)
-    if(NOT DOXYGEN_FOUND)
+    find_program(DOXYQML_EXECUTABLE NAMES doxyqml)
+    if(NOT Doxygen_FOUND)
         message(WARNING "Doxygen not found, documentation will not be built")
+        set(FLUID_WITH_DOCUMENTATION OFF)
+    elseif(NOT DOXYQML_EXECUTABLE)
+        message(WARNING "doxyqml not found, documentation will not be built")
         set(FLUID_WITH_DOCUMENTATION OFF)
     endif()
 endif()
 add_feature_info("Fluid::Documentation" FLUID_WITH_DOCUMENTATION "Build Fluid documentation")
 
-# Demo
-option(FLUID_WITH_DEMO "Build demo application" ON)
-add_feature_info("Fluid::Demo" FLUID_WITH_DEMO "Build Fluid demo application")
+# Gallery
+option(FLUID_WITH_GALLERY "Build demo application" ON)
+add_feature_info("Fluid::Gallery" FLUID_WITH_GALLERY "Build Fluid demo application")
 
 # QML modules
 option(FLUID_WITH_QML_MODULES "Build QML modules" ON)
 add_feature_info("Fluid::QMLModules" FLUID_WITH_QML_MODULES "Build Fluid QML modules")
 
-# Install Material Design icons
-option(FLUID_INSTALL_ICONS "Install Material Design icons" ON)
-add_feature_info("Fluid::Icons" FLUID_INSTALL_ICONS "Install Material Design icons")
-
 ## Summary:
 if(NOT LIRI_SUPERBUILD)
     feature_summary(WHAT ENABLED_FEATURES DISABLED_FEATURES)
+endif()
+
+#### Dependencies
+
+if(FLUID_WITH_QML_MODULES)
+    # Fluid deliberately uses Qt's private GUI APIs for platform theme and
+    # window-decoration integration. This is an acknowledged Qt-version tie.
+    set(QT_NO_PRIVATE_MODULE_WARNING ON)
+
+    ## Find Qt:
+    find_package(Qt6 6.9
+        REQUIRED
+        COMPONENTS
+            Core
+            Gui
+            Svg
+            Qml
+            Quick
+            QuickControls2
+            ShaderTools
+    )
+
+    if(NOT TARGET Qt6::GuiPrivate)
+        # GuiPrivate is supposed to be automatically found when finding Gui per
+        # https://doc.qt.io/qt-6/qtguiprivate-module.html#details, but on Arch
+        # Linux it is packaged differently.
+        find_package(Qt6 6.9 REQUIRED COMPONENTS GuiPrivate)
+    endif()
+
+    if(BUILD_TESTING)
+        find_package(Qt6 6.9 OPTIONAL_COMPONENTS QuickTest)
+    endif()
+    
+    ## Standard project setup:
+    qt_standard_project_setup(REQUIRES 6.9)
+
+    ## Qt policies:
+    if(QT_KNOWN_POLICY_QTP0004)
+        qt_policy(SET QTP0004 NEW)
+    endif()
 endif()

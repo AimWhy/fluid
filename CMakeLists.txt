@@ -6,15 +6,17 @@ project("Fluid"
     LANGUAGES CXX C
 )
 
+include(CTest)
+
 ## Add some paths to check for CMake modules:
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+## Features:
+include(features.cmake)
 
 ## Enable keywords such as emit:
 # TODO: Replace keywords such as emit with Q_EMIT
 remove_definitions(-DQT_NO_KEYWORDS)
-
-## Features:
-include(features.cmake)
 
 ## Disable use of C++ API deprecated in Qt 5.15
 add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
@@ -63,11 +65,28 @@ if(FLUID_WITH_DOCUMENTATION)
 endif()
 if(FLUID_WITH_QML_MODULES)
     add_subdirectory(src/controls)
-    add_subdirectory(src/controls/private)
-    if(FLUID_WITH_DEMO)
-        add_subdirectory(src/demo)
+    add_subdirectory(src/private)
+    if(FLUID_WITH_GALLERY)
+        add_subdirectory(src/gallery)
     endif()
     if(BUILD_TESTING)
         add_subdirectory(tests/auto)
     endif()
+endif()
+
+## Generate a shell script that sets up the environment to run binaries
+## straight out of the build tree (QML module lookup, shared libraries).
+if(UNIX)
+    set(_fluid_prefix_sh "#!/bin/sh\n")
+    string(APPEND _fluid_prefix_sh
+        "export QML_IMPORT_PATH=\"${QT_QML_OUTPUT_DIRECTORY}\"\n"
+        "export QML2_IMPORT_PATH=\"${QT_QML_OUTPUT_DIRECTORY}\"\n")
+    if(APPLE)
+        string(APPEND _fluid_prefix_sh
+            "export DYLD_LIBRARY_PATH=\"${CMAKE_BINARY_DIR}/src/controls:${CMAKE_BINARY_DIR}/src/private:$DYLD_LIBRARY_PATH\"\n")
+    else()
+        string(APPEND _fluid_prefix_sh
+            "export LD_LIBRARY_PATH=\"${CMAKE_BINARY_DIR}/src/controls:${CMAKE_BINARY_DIR}/src/private:$LD_LIBRARY_PATH\"\n")
+    endif()
+    file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/prefix.sh" CONTENT "${_fluid_prefix_sh}")
 endif()

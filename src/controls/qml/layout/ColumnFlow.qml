@@ -1,0 +1,187 @@
+// SPDX-FileCopyrightText: 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+// SPDX-FileCopyrightText: 2018 Michael Spencer <sonrisesoftware@gmail.com>
+// SPDX-License-Identifier: MPL-2.0
+
+import QtQuick
+
+/*!
+    \class ColumnFlow
+    \brief Automatically position children in columns.
+
+    ColumnFlow is a Fluid layout utility rather than a Material 3 component.
+    Its delegates can be styled with Material 3 tokens and styles as appropriate
+    for the containing application.
+
+    \code{.qml}
+    import QtQuick
+    import Fluid as Fluid
+
+    Item {
+        width: 600
+        height: 600
+
+        Fluid.ColumnFlow {
+            anchors.fill: parent
+            columns: 5
+            model: 20
+
+            delegate: Rectangle {
+                id: item
+                height: 100.0 * Math.random()
+                color: Qt.rgba(Math.random(), Math.random(), Math.random(), Math.random())
+                Text {
+                    text: index
+                }
+            }
+        }
+    }
+    \endcode
+*/
+Item {
+    id: columnFlow
+    Accessible.ignored: true
+
+    /*!
+        Column width.
+        This property is \c 100 by default.
+    */
+    property int columnWidth: 100
+
+    /*!
+        Number of columns.
+        By default it fits as many columns as possible.
+    */
+    property int columns: Math.max(0, Math.floor(width / columnWidth))
+
+    /*!
+        The model providing data to the column flow.
+
+        This property can be set to any of the supported <a href="https://doc.qt.io/qt-6/qtquick-modelviewsdata-modelview.html">Qt Quick data models</a>.
+
+        \sa Repeater::model
+    */
+    property alias model: repeater.model
+
+    /*!
+        The delegate provides a template defining each item instantiated by the column flow.
+
+        \sa Repeater::delegate
+    */
+    property alias delegate: repeater.delegate
+
+    /*!
+        Content height.
+    */
+    property int contentHeight: 0
+
+    /*!
+        This property holds whether the layout is done.
+    */
+    readonly property alias repeaterCompleted: __private.repeaterCompleted
+
+    height: contentHeight
+
+    onColumnsChanged: reEvalColumns()
+    onModelChanged: reEvalColumns()
+
+    onWidthChanged: updateWidths()
+
+    QtObject {
+        id: __private
+
+        property bool repeaterCompleted: false
+    }
+
+    /*!
+        Set the width of all delegates.
+    */
+    function updateWidths() {
+        if (repeaterCompleted) {
+            var count = 0;
+
+            // Add the first <column> elements
+            for (var i = 0; count < columns && i < columnFlow.children.length; i++) {
+                if (!columnFlow.children[i] || String(columnFlow.children[i]).indexOf("QQuickRepeater") == 0)
+                    continue;
+
+                columnFlow.children[i].width = width / columns;
+                count++;
+            }
+        }
+    }
+
+    /*!
+        Relayout the columns.
+    */
+    function reEvalColumns() {
+        if (!repeaterCompleted)
+            return;
+        var i, j;
+        var columnHeights = new Array(columns);
+        var lastItem = new Array(columns);
+        var lastI = -1;
+        var count = 0;
+
+        // Add the first <column> elements
+        for (i = 0; count < columns && i < columnFlow.children.length; i++) {
+            if (!columnFlow.children[i] || String(columnFlow.children[i]).indexOf("QQuickRepeater") == 0 || !columnFlow.children[i].visible)
+                continue;
+
+            lastItem[count] = i;
+            columnHeights[count] = columnFlow.children[i].height;
+
+            columnFlow.children[i].anchors.top = columnFlow.top;
+            columnFlow.children[i].anchors.left = (lastI === -1 ? columnFlow.left : columnFlow.children[lastI].right);
+            columnFlow.children[i].anchors.right = undefined;
+            columnFlow.children[i].width = columnFlow.width / columns;
+
+            lastI = i;
+            count++;
+        }
+
+        // Add the other elements
+        for (i = i; i < columnFlow.children.length; i++) {
+            var highestHeight = Number.MAX_VALUE;
+            var newColumn = 0;
+
+            if (!columnFlow.children[i] || !columnFlow.children[i].visible)
+                continue;
+
+            // find the shortest column
+            for (j = 0; j < columns; j++) {
+                if (columnHeights[j] < highestHeight) {
+                    newColumn = j;
+                    highestHeight = columnHeights[j];
+                }
+            }
+
+            // add the element to the shortest column
+            columnFlow.children[i].anchors.top = columnFlow.children[lastItem[newColumn]].bottom;
+            columnFlow.children[i].anchors.left = columnFlow.children[lastItem[newColumn]].left;
+            columnFlow.children[i].anchors.right = columnFlow.children[lastItem[newColumn]].right;
+
+            lastItem[newColumn] = i;
+            columnHeights[newColumn] += columnFlow.children[i].height;
+        }
+
+        var cHeight = 0;
+        for (i = 0; i < columns; i++) {
+            if (!columnHeights[i])
+                continue;
+            cHeight = Math.max(cHeight, columnHeights[i]);
+        }
+        contentHeight = cHeight;
+
+        updateWidths();
+    }
+
+    Repeater {
+        id: repeater
+        model: columnFlow.model
+
+        Component.onCompleted: {
+            __private.repeaterCompleted = true;
+            columnFlow.reEvalColumns();
+        }
+    }
+}

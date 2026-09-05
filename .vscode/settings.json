@@ -1,9 +1,26 @@
 {
-    "github.copilot.chat.commitMessageGeneration.instructions": [
-        {
-            "file": ".github/commit-instructions.md"
-        }
-    ],
+    "chat.hookFilesLocations": {
+        ".claude/settings.json": true,
+        ".claude/settings.local.json": true
+    },
     "cmake.buildDirectory": "${workspaceFolder}/build",
-    "cmake.installPrefix": "${workspaceFolder}/build/install-root"
+    "cmake.installPrefix": "${workspaceFolder}/build/install-root",
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.moc": "cpp",
+        "*.qrc": "xml",
+        "*.ui": "xml"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[qml]": {
+        "editor.defaultFormatter": "Delgan.qml-format"
+    },
+    "qmlFormat.extraArguments": [
+        "--newline",
+        "unix",
+        "--semicolon-rule",
+        "always",
+    ]
 }

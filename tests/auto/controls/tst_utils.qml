@@ -1,20 +1,8 @@
-/*
- * This file is part of Fluid.
- *
- * Copyright (C) 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
- *
- * $BEGIN_LICENSE:MPL2$
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * $END_LICENSE$
- */
-
-import QtQuick
-import QtTest
+// SPDX-FileCopyrightText: 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+// SPDX-License-Identifier: MPL-2.0
 import Fluid as Fluid
+import QtTest
+import "../../../src/controls/qml/core/UiMetrics.js" as UiMetrics
 
 TestCase {
     name: "UtilsTests"
@@ -24,5 +12,16 @@ TestCase {
         compare(Fluid.Utils.scale(50, 0, 100), 50);
         compare(Fluid.Utils.scale(50, 50, 100), 75);
         compare(Fluid.Utils.scale(50, 1, 100), 50.5);
+    }
+
+    function test_resolveShapeRadius() {
+        const full = Fluid.Tokens.shape.cornerValueFull;
+
+        compare(UiMetrics.resolveShapeRadius(full, 40, 40), 20);
+        compare(UiMetrics.resolveShapeRadius(full, 80, 40), 20);
+        compare(UiMetrics.resolveShapeRadius(full, 40, 80), 20);
+        compare(UiMetrics.resolveShapeRadius(full, 80, 0), 0);
+        compare(UiMetrics.resolveShapeRadius(12, 80, 40), 12);
+        compare(UiMetrics.resolveShapeRadius(12, 0, 40), 0);
     }
 }

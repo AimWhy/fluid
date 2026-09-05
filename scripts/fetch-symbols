@@ -1,0 +1,231 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Copyright (C) 2025 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+# SPDX-License-Identifier: MIT
+#
+# Material Symbols mapper.
+#
+# This script downloads the Material Symbols codepoints and maps symbol names to Unicode character mappings.
+#
+
+import argparse
+import re
+from pathlib import Path
+from typing import Dict, Iterable
+from io import StringIO
+from urllib.parse import quote
+from urllib.request import urlopen
+
+
+# Flutter's English number vocabulary is the baseline. Numbers are parsed
+# generically so newly-added symbols do not require another prefix entry.
+SMALL_NUMBER_WORDS = (
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+    "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+    "sixteen", "seventeen", "eighteen", "nineteen",
+)
+TENS_WORDS = (
+    "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+    "eighty", "ninety",
+)
+SCALE_WORDS = (
+    "", "thousand", "million", "billion", "trillion", "quadrillion",
+    "quintillion", "sextillion", "septillion", "octillion", "nonillion",
+    "decillion",
+)
+SPECIAL_NUMBER_WORDS = {
+    "123": ("one", "two", "three"),
+    "360": ("three", "sixty"),
+}
+
+# QML property names may not be ECMAScript keywords. Include QML declaration
+# keywords as well so generated names are also safe in QML tooling.
+RESERVED_WORDS = {
+    "abstract", "as", "async", "await", "boolean", "break", "byte", "case", "catch",
+    "char", "class", "component", "const", "continue", "debugger", "default",
+    "delete", "do", "double", "else", "enum", "export", "extends", "false", "final",
+    "finally", "float", "for", "function", "goto", "id", "if", "implements",
+    "import", "in", "instanceof", "int", "interface", "let", "long", "native", "new",
+    "null", "package", "pragma", "print", "private", "property", "protected", "public",
+    "readonly", "required", "return", "short", "signal", "static", "super", "switch",
+    "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof",
+    "var", "void", "volatile", "while", "with", "yield",
+}
+
+SYMBOL_NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:_[a-z0-9]+)*$")
+QML_IDENTIFIER_PATTERN = re.compile(r"^[a-z][A-Za-z0-9]*$")
+CODEPOINT_PATTERN = re.compile(r"^[0-9a-fA-F]+$")
+
+
+def download_file(url: str) -> bytes:
+    """Download the file and return it."""
+    with urlopen(url) as response:
+        return response.read()
+
+
+def parse_codepoints_file(file_content: bytes) -> Dict[str, str]:
+    """Parse the Material Symbols codepoints file and return name->codepoint mappings."""
+    mappings = {}
+
+    file_stream = StringIO(file_content.decode("utf-8"))
+    for line in file_stream:
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        # Format is: symbol_name codepoint
+        parts = line.split()
+        if len(parts) != 2:
+            raise ValueError(f"Invalid codepoints line: {line}")
+
+        name, codepoint = parts
+        if name in mappings:
+            raise ValueError(f"Duplicate symbol name: {name}")
+        mappings[name] = codepoint
+
+    return mappings
+
+
+def to_camel_case(words: Iterable[str]) -> str:
+    """Join lowercase words into a lower-camel identifier."""
+    words = list(words)
+    return words[0] + "".join(word.capitalize() for word in words[1:])
+
+
+def number_below_thousand_words(number: int) -> list:
+    """Spell a number from zero through 999 as separate lowercase words."""
+    words = []
+    if number >= 100:
+        words.extend((SMALL_NUMBER_WORDS[number // 100], "hundred"))
+        number %= 100
+    if number >= 20:
+        words.append(TENS_WORDS[number // 10])
+        number %= 10
+    if number > 0:
+        words.append(SMALL_NUMBER_WORDS[number])
+    return words
+
+
+def number_words(digits: str) -> list:
+    """Spell a leading decimal number for use in an identifier."""
+    if digits in SPECIAL_NUMBER_WORDS:
+        return list(SPECIAL_NUMBER_WORDS[digits])
+
+    number = int(digits)
+    if number == 0:
+        return [SMALL_NUMBER_WORDS[0]]
+
+    groups = []
+    while number:
+        groups.append(number % 1000)
+        number //= 1000
+
+    if len(groups) > len(SCALE_WORDS):
+        return [SMALL_NUMBER_WORDS[int(digit)] for digit in digits]
+
+    words = []
+    for scale_index in range(len(groups) - 1, -1, -1):
+        group = groups[scale_index]
+        if group == 0:
+            continue
+        words.extend(number_below_thousand_words(group))
+        if SCALE_WORDS[scale_index]:
+            words.append(SCALE_WORDS[scale_index])
+    return words
+
+
+def symbol_identifier(name: str) -> str:
+    """Convert an upstream Material symbol name to a safe QML identifier."""
+    words = name.split("_")
+    numeric_prefix = re.match(r"^(\d+)", name)
+    if numeric_prefix:
+        digits = numeric_prefix.group(1)
+        remainder = name[len(digits):].lstrip("_")
+        words = number_words(digits)
+        if remainder:
+            words.extend(remainder.split("_"))
+
+    identifier = to_camel_case(words)
+    if identifier in RESERVED_WORDS:
+        identifier += "Icon"
+    return identifier
+
+
+def validate_mappings(mappings: Dict[str, str]) -> Dict[str, str]:
+    """Validate source mappings and return their generated identifiers."""
+    identifiers = {}
+    sources_by_identifier = {}
+
+    for name, codepoint in mappings.items():
+        if not SYMBOL_NAME_PATTERN.fullmatch(name):
+            raise ValueError(f"Invalid symbol name: {name}")
+        if not CODEPOINT_PATTERN.fullmatch(codepoint):
+            raise ValueError(f"Invalid codepoint for {name}: {codepoint}")
+
+        identifier = symbol_identifier(name)
+        if not QML_IDENTIFIER_PATTERN.fullmatch(identifier):
+            raise ValueError(f"Invalid QML identifier for {name}: {identifier}")
+        identifiers[name] = identifier
+        sources_by_identifier.setdefault(identifier, []).append(name)
+
+    collisions = {
+        identifier: names
+        for identifier, names in sources_by_identifier.items()
+        if len(names) > 1
+    }
+    if collisions:
+        details = "; ".join(
+            f"{identifier}: {', '.join(names)}"
+            for identifier, names in sorted(collisions.items())
+        )
+        raise ValueError(f"Generated identifier collisions: {details}")
+
+    return identifiers
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Download Material Symbols")
+    parser.add_argument("directory", type=Path, nargs='?', default=Path(__file__).parent / "../src", help="Path to src/ directory")
+
+    args = parser.parse_args()
+
+    base_url = "https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/variablefont"
+
+    # Parse and validate mappings
+    codepoints_url = (
+        f"{base_url}/{quote('MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].codepoints')}"
+    )
+    mappings = parse_codepoints_file(download_file(codepoints_url))
+    identifiers = validate_mappings(mappings)
+
+    # Generate a QML singleton mapping identifiers to upstream symbol names.
+    with open(args.directory / "controls/qml/components/Symbols.qml", "w", encoding="utf-8") as f:
+        f.write("// SPDX-FileCopyrightText: 2026 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>\n")
+        f.write("// SPDX-License-Identifier: MPL-2.0\n//\n")
+        f.write("// This file is auto-generated by fetch-symbols, do not change it\n\n")
+        f.write("pragma Singleton\n\n")
+        f.write("Object {\n")
+        for name in mappings:
+            prop_name = identifiers[name]
+            f.write(f'    readonly property string {prop_name}: "{name}";\n')
+        f.write("}\n")
+
+    # Generate a QML ListModel with symbol names and their corresponding symbol strings
+    with open(args.directory / "gallery/qml/SymbolsModel.qml", "w", encoding="utf-8") as f:
+        f.write("// SPDX-FileCopyrightText: 2026 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>\n")
+        f.write("// SPDX-License-Identifier: MPL-2.0\n//\n")
+        f.write("// This file is auto-generated by fetch-symbols, do not change it\n\n")
+        f.write("import QtQml.Models\n\n")
+        f.write("ListModel {\n")
+        for name, codepoint in mappings.items():
+            f.write(f'\tListElement {{ name: "{name}"; codepoint: "\\u{codepoint}"; }}\n')
+        f.write("}\n")
+
+    print(f"Successfully generated mappings for {len(mappings)} symbols")
+    print(f"Output written to: {args.directory.resolve()}")
+
+    return 0
+
+
+if __name__ == "__main__":
+    exit(main())

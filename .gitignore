@@ -1,5 +1,7 @@
+.claude/settings.local.json
 .idea/
 build/
-material-design-icons/
+__pycache__/
 *.user
 *.qmlc
+*.py[co]

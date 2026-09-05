@@ -1,0 +1,424 @@
+// SPDX-FileCopyrightText: 2026 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+// SPDX-License-Identifier: MPL-2.0
+
+import QtQuick
+import Fluid as MD
+import "../internal/MotionAnimation.js" as MotionAnimation
+import Fluid.Private as P
+import "../core/UiMetrics.js" as UiMetrics
+
+/*!
+    \class Button
+    \brief A Material 3 Expressive push button.
+
+    Button supports elevated, filled, tonal, outlined, and text appearances, five
+    expressive sizes, optional icons, checkable state, and round or square shapes.
+    Text and icon layout continue to use the inherited AbstractButton API.
+
+    For more information see the
+    <a href="https://m3.material.io/components/buttons/overview">Material Design 3 button guidelines</a>.
+*/
+P.BaseButton {
+    id: control
+
+    /*!
+        The type of the button. This controls the button's appearance and behavior.
+    */
+    property int type: P.BaseButton.Type.Elevated
+
+    /*!
+        The shape of the button. This controls the corner radius and overall appearance of the button.
+        The default is MD.Button.Shape.Round, which is the recommended shape for most use cases.
+        Use Square for a more angular and modern look, and Round for a softer and more traditional appearance.
+    */
+    property int shape: P.BaseButton.Shape.Round
+
+    /*!
+        The size of the button. This controls the button's dimensions, padding, and font size.
+        The default is MD.Button.Size.Small, which is the recommended size for most use cases.
+        Use larger sizes for buttons that need to be more prominent,
+        and smaller sizes for buttons that are less important or used in tight spaces.
+    */
+    property int size: P.BaseButton.Size.Small
+
+    /*!
+        The typescale to use for the button's text. This controls the font size, weight, and letter spacing.
+        Ignore when the button is set to IconOnly display, as the text will not be shown.
+    */
+    property MD.typescale typescale: UiMetrics.buttonTypescale(control)
+
+    // Set by ButtonGroup while this button is one of its direct children.
+    property var __buttonGroup: null
+    property real __groupTopLeftRadius: -1
+    property real __groupTopRightRadius: -1
+    property real __groupBottomLeftRadius: -1
+    property real __groupBottomRightRadius: -1
+
+    /*!
+        Whether the button has an icon. This is used to determine padding and layout.
+    */
+    readonly property bool hasIcon: icon.name.length > 0
+
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset, implicitContentHeight + topPadding + bottomPadding)
+
+    leftInset: 0
+    rightInset: 0
+    topInset: UiMetrics.buttonInset(control)
+    bottomInset: UiMetrics.buttonInset(control)
+
+    leftPadding: UiMetrics.buttonPadding(control)
+    rightPadding: UiMetrics.buttonPadding(control)
+    topPadding: control.display === P.BaseButton.TextUnderIcon ? UiMetrics.buttonPadding(control) : 0
+    bottomPadding: control.display === P.BaseButton.TextUnderIcon ? UiMetrics.buttonPadding(control) : 0
+
+    flat: control.type === P.BaseButton.Type.Text || control.type === P.BaseButton.Type.Outlined
+
+    hoverEnabled: true
+    focusPolicy: Qt.StrongFocus
+
+    onCheckedChanged: {
+        if (__buttonGroup)
+            __buttonGroup.__childCheckedChanged(control);
+    }
+    onActiveFocusChanged: {
+        if (activeFocus && __buttonGroup)
+            __buttonGroup.__childFocused(control);
+    }
+    onPressedChanged: {
+        if (__buttonGroup)
+            __buttonGroup.__childGeometryChanged();
+    }
+    onImplicitWidthChanged: {
+        if (__buttonGroup)
+            __buttonGroup.__childGeometryChanged();
+    }
+    onVisibleChanged: {
+        if (__buttonGroup)
+            __buttonGroup.__childrenChanged();
+    }
+    onEnabledChanged: {
+        if (__buttonGroup)
+            __buttonGroup.__childrenChanged();
+    }
+    Keys.onPressed: event => {
+        if (__buttonGroup && __buttonGroup.__handleKey(control, event))
+            event.accepted = true;
+    }
+
+    Behavior on width {
+        enabled: control.__buttonGroup && control.__buttonGroup.__geometryInitialized
+                 && control.__buttonGroup.variant === control.__buttonGroup.__standardVariant
+        NumberAnimation {
+            easing.type: Easing.BezierSpline
+            easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+            duration: MotionAnimation.expressiveFastSpatialDuration
+        }
+    }
+    Behavior on x {
+        enabled: control.__buttonGroup && control.__buttonGroup.__geometryInitialized
+                 && control.__buttonGroup.variant === control.__buttonGroup.__standardVariant
+        NumberAnimation {
+            easing.type: Easing.BezierSpline
+            easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+            duration: MotionAnimation.expressiveFastSpatialDuration
+        }
+    }
+
+    Accessible.role: __buttonGroup && __buttonGroup.selectionMode === __buttonGroup.__singleSelectionMode
+                     ? Accessible.RadioButton
+                     : (__buttonGroup && __buttonGroup.selectionMode === __buttonGroup.__multiSelectionMode
+                        ? Accessible.CheckBox : Accessible.Button)
+    Accessible.checkable: checkable
+    Accessible.checked: checked
+
+    spacing: UiMetrics.buttonSpacing(control)
+
+    icon.width: UiMetrics.buttonIconSize(control)
+    icon.height: UiMetrics.buttonIconSize(control)
+
+    font.pixelSize: typescale.fontSize
+    font.weight: typescale.fontWeight
+    font.letterSpacing: typescale.tracking
+
+    QtObject {
+        id: state
+
+        property color containerColor: {
+            switch (control.type) {
+            case P.BaseButton.Type.Elevated:
+                return control.checked ? control.MD.Style.primaryColor : control.MD.Style.surfaceContainerLowColor;
+            case P.BaseButton.Type.Filled:
+                return !control.checked ? control.MD.Style.surfaceContainerColor : control.MD.Style.primaryColor;
+            case P.BaseButton.Type.Tonal:
+                return control.checked ? control.MD.Style.secondaryColor : control.MD.Style.secondaryContainerColor;
+            case P.BaseButton.Type.Outlined:
+                return control.checked ? control.MD.Style.inverseSurfaceColor : "transparent";
+            case P.BaseButton.Type.Text:
+                return "transparent";
+            }
+        }
+        property color labelColor: {
+            switch (control.type) {
+            case P.BaseButton.Type.Elevated:
+                return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+            case P.BaseButton.Type.Filled:
+                return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+            case P.BaseButton.Type.Tonal:
+                return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+            case P.BaseButton.Type.Outlined:
+                return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+            case P.BaseButton.Type.Text:
+                return control.MD.Style.primaryColor;
+            }
+        }
+        property color stateLayerColor: "transparent"
+
+        property real elevation: control.type === P.BaseButton.Type.Elevated ? MD.Tokens.button.elevatedContainerElevation : MD.Tokens.button.flatContainerElevation
+
+        property real contentOpacity: 1.0
+        property real containerOpacity: 1.0
+        property real stateLayerOpacity: 1.0
+    }
+
+    states: [
+        State {
+            name: "disabled"
+            when: !control.enabled
+
+            PropertyChanges {
+                state {
+                    containerColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.MD.Style.onSurfaceColor;
+                        case P.BaseButton.Type.Filled:
+                        case P.BaseButton.Type.Tonal:
+                            return control.MD.Style.onSurfaceColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.onSurfaceColor : control.MD.Style.outlineVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.onSurfaceColor;
+                        }
+                    }
+                    labelColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.MD.Style.onSurfaceColor;
+                        case P.BaseButton.Type.Filled:
+                        case P.BaseButton.Type.Tonal:
+                        case P.BaseButton.Type.Outlined:
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.onSurfaceColor;
+                        }
+                    }
+                    elevation: MD.Tokens.button.flatContainerElevation
+                    containerOpacity: MD.Tokens.button.disabledContainerOpacity
+                    contentOpacity: MD.Tokens.button.disabledLabelTextOpacity
+                }
+            }
+        },
+        State {
+            name: "hovered"
+            when: control.hovered && control.enabled
+
+            PropertyChanges {
+                state {
+                    labelColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    stateLayerColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    stateLayerOpacity: MD.Tokens.button.hoverStateLayerOpacity
+                }
+            }
+        },
+        State {
+            name: "focused"
+            when: control.visualFocus && control.enabled
+
+            PropertyChanges {
+                state {
+                    labelColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    stateLayerColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    elevation: control.type === P.BaseButton.Type.Elevated ? MD.Tokens.button.elevatedContainerElevation : MD.Tokens.button.flatContainerElevation
+                    stateLayerOpacity: MD.Tokens.button.focusStateLayerOpacity
+                }
+            }
+        },
+        State {
+            name: "pressed"
+            when: control.down && control.enabled
+
+            PropertyChanges {
+                state {
+                    labelColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    stateLayerColor: {
+                        switch (control.type) {
+                        case P.BaseButton.Type.Elevated:
+                            return control.checked ? control.MD.Style.onPrimaryColor : control.MD.Style.primaryColor;
+                        case P.BaseButton.Type.Filled:
+                            return !control.checked ? control.MD.Style.onSurfaceVariantColor : control.MD.Style.onPrimaryColor;
+                        case P.BaseButton.Type.Tonal:
+                            return control.checked ? control.MD.Style.onSecondaryColor : control.MD.Style.onSecondaryContainerColor;
+                        case P.BaseButton.Type.Outlined:
+                            return control.checked ? control.MD.Style.inverseOnSurfaceColor : control.MD.Style.onSurfaceVariantColor;
+                        case P.BaseButton.Type.Text:
+                            return control.MD.Style.primaryColor;
+                        }
+                    }
+                    elevation: control.type === P.BaseButton.Type.Elevated ? MD.Tokens.button.elevatedContainerElevation : MD.Tokens.button.flatContainerElevation
+                    stateLayerOpacity: MD.Tokens.button.pressedStateLayerOpacity
+                }
+            }
+        }
+    ]
+
+    contentItem: MD.IconLabel {
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+
+        icon.name: control.icon.name
+        icon.width: control.icon.width
+        icon.height: control.icon.height
+        icon.color: color
+
+        typescale: control.typescale
+        text: control.text
+        opacity: state.contentOpacity
+        color: state.labelColor
+    }
+
+    background: MD.ElevationRectangle {
+        implicitWidth: 64
+        implicitHeight: UiMetrics.buttonHeight(control)
+
+        readonly property MD.shapeValue containerShape: UiMetrics.buttonShape(control)
+
+        topLeftRadius: control.__groupTopLeftRadius >= 0 ? control.__groupTopLeftRadius : UiMetrics.resolveShapeRadius(containerShape.topLeft, width, height)
+        topRightRadius: control.__groupTopRightRadius >= 0 ? control.__groupTopRightRadius : UiMetrics.resolveShapeRadius(containerShape.topRight, width, height)
+        bottomLeftRadius: control.__groupBottomLeftRadius >= 0 ? control.__groupBottomLeftRadius : UiMetrics.resolveShapeRadius(containerShape.bottomLeft, width, height)
+        bottomRightRadius: control.__groupBottomRightRadius >= 0 ? control.__groupBottomRightRadius : UiMetrics.resolveShapeRadius(containerShape.bottomRight, width, height)
+
+        Behavior on topLeftRadius {
+            enabled: !control.__buttonGroup || control.__buttonGroup.__geometryInitialized
+            NumberAnimation {
+                easing.type: Easing.BezierSpline
+                easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+                duration: MotionAnimation.expressiveFastSpatialDuration
+            }
+        }
+        Behavior on topRightRadius {
+            enabled: !control.__buttonGroup || control.__buttonGroup.__geometryInitialized
+            NumberAnimation {
+                easing.type: Easing.BezierSpline
+                easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+                duration: MotionAnimation.expressiveFastSpatialDuration
+            }
+        }
+        Behavior on bottomLeftRadius {
+            enabled: !control.__buttonGroup || control.__buttonGroup.__geometryInitialized
+            NumberAnimation {
+                easing.type: Easing.BezierSpline
+                easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+                duration: MotionAnimation.expressiveFastSpatialDuration
+            }
+        }
+        Behavior on bottomRightRadius {
+            enabled: !control.__buttonGroup || control.__buttonGroup.__geometryInitialized
+            NumberAnimation {
+                easing.type: Easing.BezierSpline
+                easing.bezierCurve: MotionAnimation.expressiveFastSpatialCurve
+                duration: MotionAnimation.expressiveFastSpatialDuration
+            }
+        }
+
+        border.width: control.type == P.BaseButton.Type.Outlined ? UiMetrics.buttonOutlineWidth(control) : 0
+        border.color: MD.Style.outlineVariantColor
+
+        elevation: state.elevation
+        elevationVisible: !MD.Utils.epsilonEqual(elevation, MD.Tokens.elevation.level0) && !control.flat && color.a > 0
+
+        opacity: state.containerOpacity
+        color: state.containerColor
+
+        MD.Ripple {
+            anchors.fill: parent
+
+            topLeftRadius: parent.topLeftRadius
+            topRightRadius: parent.topRightRadius
+            bottomLeftRadius: parent.bottomLeftRadius
+            bottomRightRadius: parent.bottomRightRadius
+
+            pressed: control.pressed
+            pressX: control.pressX
+            pressY: control.pressY
+
+            stateOpacity: state.stateLayerOpacity
+            color: state.stateLayerColor
+        }
+    }
+}

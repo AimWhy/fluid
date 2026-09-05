@@ -1,193 +1,206 @@
-set(LIBNAME fluidcontrols)
+set(LIBNAME Fluid)
 
+# Source files
 set(_sources
-    clipboard.cpp clipboard.h
-    color.cpp color.h
-    controlsplugin.cpp controlsplugin.h
-    controlsutils.cpp controlsutils.h
-    dateutils.cpp dateutils.h
-    datepicker.cpp datepicker.h
-    dateselector.cpp dateselector.h
-    datetimepicker.cpp datetimepicker.h
-    device.cpp device.h
-    picker.cpp picker.h
-    iconthemeimageprovider.cpp iconthemeimageprovider.h
-    inputregion.cpp inputregion.h
-    timepicker.cpp timepicker.h
-    timeselector.cpp timeselector.h
-    yearmodel.cpp yearmodel.h
-    yearselector.cpp yearselector.h
-    standardpaths.cpp standardpaths.h
-    style.cpp style.h
+    cpp/core/clipboard.cpp cpp/core/clipboard.h
+    cpp/core/inputregion.cpp cpp/core/inputregion.h
+    cpp/core/tooltipattached.cpp cpp/core/tooltipattached.h
+    cpp/scenegraph/elevationmaterial.cpp cpp/scenegraph/elevationmaterial.h
+    cpp/scenegraph/geometry.cpp cpp/scenegraph/geometry.h
+    cpp/style/color.cpp cpp/style/color.h
+    cpp/style/elevation.cpp cpp/style/elevation.h
+    cpp/style/style.cpp cpp/style/style.h
+    cpp/style/theme.cpp cpp/style/theme.h
+    cpp/tokens/appbar.cpp cpp/tokens/appbar.h
+    cpp/tokens/button.cpp cpp/tokens/button.h
+    cpp/tokens/buttongroup.cpp cpp/tokens/buttongroup.h
+    cpp/tokens/checkbox.cpp cpp/tokens/checkbox.h
+    cpp/tokens/colordark.cpp cpp/tokens/colordark.h
+    cpp/tokens/colorlight.cpp cpp/tokens/colorlight.h
+    cpp/tokens/dialog.cpp cpp/tokens/dialog.h
+    cpp/tokens/divider.cpp cpp/tokens/divider.h
+    cpp/tokens/elevationtokens.cpp cpp/tokens/elevationtokens.h
+    cpp/tokens/exposeddropdownmenu.cpp cpp/tokens/exposeddropdownmenu.h
+    cpp/tokens/fab.cpp cpp/tokens/fab.h
+    cpp/tokens/fabmenu.cpp cpp/tokens/fabmenu.h
+    cpp/tokens/iconbutton.cpp cpp/tokens/iconbutton.h
+    cpp/tokens/listitem.cpp cpp/tokens/listitem.h
+    cpp/tokens/measurementtokens.cpp cpp/tokens/measurementtokens.h
+    cpp/tokens/menu.cpp cpp/tokens/menu.h
+    cpp/tokens/motiontokens.cpp cpp/tokens/motiontokens.h
+    cpp/tokens/navigationrail.cpp cpp/tokens/navigationrail.h
+    cpp/tokens/palette.cpp cpp/tokens/palette.h
+    cpp/tokens/radiobutton.cpp cpp/tokens/radiobutton.h
+    cpp/tokens/segmentedbutton.cpp cpp/tokens/segmentedbutton.h
+    cpp/tokens/shapetokens.cpp cpp/tokens/shapetokens.h
+    cpp/tokens/slider.cpp cpp/tokens/slider.h
+    cpp/tokens/statetokens.cpp cpp/tokens/statetokens.h
+    cpp/tokens/switch.cpp cpp/tokens/switch.h
+    cpp/tokens/symbol.cpp cpp/tokens/symbol.h
+    cpp/tokens/textfield.cpp cpp/tokens/textfield.h
+    cpp/tokens/tooltip.cpp cpp/tokens/tooltip.h
+    cpp/tokens/tokens.cpp cpp/tokens/tokens.h
+    cpp/tokens/typescale.cpp cpp/tokens/typescale.h
 )
 
-#file(GLOB _qml "qml/*.qml")
-set(_qml
-    qml/AbstractButton.qml
-    qml/Action.qml
-    qml/ActionGroup.qml
-    qml/AlertDialog.qml
-    qml/AppBar.qml
-    qml/AppToolBar.qml
-    qml/ApplicationWindow.qml
-    qml/AutomaticGrid.qml
-    qml/BodyLabel.qml
-    qml/BottomSheet.qml
-    qml/BottomSheetGrid.qml
-    qml/BottomSheetList.qml
-    qml/BoxShadow.qml
-    qml/BusyIndicator.qml
-    qml/Button.qml
-    qml/ButtonGroup.qml
-    qml/Calendar.qml
-    qml/CalendarModel.qml
-    qml/CaptionLabel.qml
-    qml/Card.qml
-    qml/CheckBox.qml
-    qml/Chip.qml
-    qml/CircleImage.qml
-    qml/CircleMask.qml
-    qml/ColumnFlow.qml
-    qml/ComboBox.qml
-    qml/Container.qml
-    qml/Control.qml
-    qml/DatePicker.qml
-    qml/DatePickerDialog.qml
-    qml/DateTimePicker.qml
-    qml/DateTimePickerDialog.qml
-    qml/DayOfWeekRow.qml
-    qml/DelayButton.qml
-    qml/Dial.qml
-    qml/Dialog.qml
-    qml/DialogButtonBox.qml
-    qml/DialogLabel.qml
-    qml/DisplayLabel.qml
-    qml/Elevation.qml
-    qml/FloatingActionButton.qml
-    qml/Frame.qml
-    qml/GroupBox.qml
-    qml/HeadlineLabel.qml
-    qml/HorizontalHeaderView.qml
-    qml/Icon.qml
-    qml/InputDialog.qml
-    qml/Label.qml
-    qml/ListItem.qml
-    qml/Loadable.qml
-    qml/Menu.qml
-    qml/MenuBar.qml
-    qml/MenuBarItem.qml
-    qml/MenuItem.qml
-    qml/MenuSeparator.qml
-    qml/MonthGrid.qml
-    qml/NavigationDrawer.qml
-    qml/NavigationListView.qml
-    qml/NoiseBackground.qml
-    qml/Object.qml
-    qml/Overlay.qml
-    qml/OverlayView.qml
-    qml/Page.qml
-    qml/PageIndicator.qml
-    qml/PageSidebar.qml
-    qml/PageStack.qml
-    qml/Pane.qml
-    qml/Placeholder.qml
-    qml/Popup.qml
-    qml/ProgressBar.qml
-    qml/RadioButton.qml
-    qml/RangeSlider.qml
-    qml/Ripple.qml
-    qml/ScrollBar.qml
-    qml/ScrollIndicator.qml
-    qml/ScrollView.qml
-    qml/SearchBar.qml
-    qml/SelectionRectangle.qml
-    qml/Showable.qml
-    qml/Sidebar.qml
-    qml/Slider.qml
-    qml/SmoothFadeImage.qml
-    qml/SmoothFadeLoader.qml
-    qml/SnackBar.qml
-    qml/SpinBox.qml
-    qml/SplitHandle.qml
-    qml/SplitView.qml
-    qml/StackView.qml
-    qml/Subheader.qml
-    qml/SubheadingLabel.qml
-    qml/SwipeView.qml
-    qml/Switch.qml
-    qml/Tab.qml
-    qml/TabBar.qml
-    qml/TabButton.qml
-    qml/TabbedPage.qml
-    qml/TextArea.qml
-    qml/TextField.qml
-    qml/ThinDivider.qml
-    qml/TimePicker.qml
-    qml/TimePickerDialog.qml
-    qml/TitleLabel.qml
-    qml/ToolBar.qml
-    qml/ToolButton.qml
-    qml/ToolSeparator.qml
-    qml/ToolTip.qml
-    qml/TreeViewDelegate.qml
-    qml/Tumbler.qml
-    qml/Units.qml
-    qml/VerticalHeaderView.qml
-    qml/Vignette.qml
-    qml/Wave.qml
-    qml/WeekNumberColumn.qml
+# QML and JavaScript files
+file(GLOB_RECURSE _qml_js CONFIGURE_DEPENDS
+    RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+    "qml/*.qml" "qml/**/*.qml"
+    "qml/*.js" "qml/**/*.js"
 )
 
-qt6_add_qml_module(${LIBNAME}
-    URI Fluid
-    VERSION 2.0
-    RESOURCE_PREFIX /
-    SOURCES ${_sources}
-    QML_FILES ${_qml}
+# ------------------------------------------------------------
+# Backing library
+# ------------------------------------------------------------
+add_library(${LIBNAME} SHARED
+    ${_sources}
+)
+set_target_properties(${LIBNAME} PROPERTIES
+    AUTOMOC ON
+    AUTORCC ON
+    AUTOUIC ON
+)
+target_include_directories(${LIBNAME}
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/core"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/datetime"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/items"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/scenegraph"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/style"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/tokens"
+        "${CMAKE_CURRENT_SOURCE_DIR}/cpp/utils"
+)
+target_link_libraries(${LIBNAME}
+    PRIVATE
+        Qt6::Core
+        Qt6::Gui
+        Qt6::GuiPrivate
+        Qt6::Qml
+        Qt6::Quick
+        Qt6::QuickControls2
+        Qt6::Svg
+)
+
+# ------------------------------------------------------------
+# Define the QML module
+# ------------------------------------------------------------
+set_source_files_properties(qml/components/Symbols.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+set_source_files_properties(qml/core/Breakpoints.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+set_source_files_properties(qml/core/Units.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+set_source_files_properties(qml/core/Utils.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+set_source_files_properties(qml/internal/MotionAnimation.js PROPERTIES
+    QT_QML_SKIP_QMLDIR_ENTRY TRUE
+)
+
+qt_add_qml_module(${LIBNAME}
+    URI
+        Fluid
+    VERSION
+        2.0
+    SOURCES
+        ${_sources}
+    QML_FILES
+        ${_qml_js}
+    RESOURCES
+        ${_resources}
     IMPORTS
         QtQuick.Layouts
     DEPENDENCIES
         QtQuick
         QtQuick.Templates
-    CLASS_NAME FluidPlugin
-    NO_GENERATE_PLUGIN_SOURCE
-    OUTPUT_TARGETS ${LIBNAME}_targets
+        #Fluid.Private
+    #CLASS_NAME FluidPlugin
+    #NO_GENERATE_PLUGIN_SOURCE
 )
 
-set_source_files_properties(Units.qml PROPERTIES
-    QT_QML_SINGLETON_TYPE TRUE
-)
+# Install library
+install(TARGETS ${LIBNAME}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-if(FLUID_INSTALL_ICONS)
-    target_compile_definitions(${LIBNAME} PRIVATE -DFLUID_INSTALL_ICONS=1)
-else()
-qt6_add_resource(SOURCES icons.qrc)
-    target_sources(${LIBNAME} PRIVATE ${_sources})
-    target_compile_definitions(${LIBNAME} PRIVATE -DFLUID_INSTALL_ICONS=0)
-endif()
-
-target_link_libraries(${LIBNAME}
-    PUBLIC
-        Qt6::Core
-        Qt6::Gui
-        Qt6::Qml
-        Qt6::Quick
-        Qt6::QuickControls2
-        Qt6::Svg
-    PRIVATE
-        Qt6::GuiPrivate
-)
-
-install(TARGETS ${${LIBNAME}_targets} EXPORT ${LIBNAME}-targets)
-install(TARGETS ${LIBNAME} EXPORT ${LIBNAME}-targets)
-
+# Install QML module
 qt_install_qml_module(${LIBNAME})
 
-if(FLUID_INSTALL_ICONS)
-    file(GLOB icons "${CMAKE_CURRENT_SOURCE_DIR}/icons/*/*.svg")
-    foreach(source_path IN LISTS icons)
-        string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/icons/" "" icon_basename "${source_path}")
-        get_filename_component(_category "${icon_basename}" DIRECTORY)
-        install(FILES "${source_path}" DESTINATION "${QML_INSTALL_DIR}/Fluid/icons/${_category}")
-    endforeach()
+# ------------------------------------------------------------
+# Shaders
+# ------------------------------------------------------------
+set(_common_glsl
+    "${CMAKE_SOURCE_DIR}/assets/shaders/common.glsl"
+    "${CMAKE_SOURCE_DIR}/assets/shaders/sdf.glsl"
+)
+set(_shaders
+    "${CMAKE_SOURCE_DIR}/assets/shaders/default.vert"
+    "${CMAKE_SOURCE_DIR}/assets/shaders/ripple.frag"
+    "${CMAKE_SOURCE_DIR}/assets/shaders/shadow.vert"
+    "${CMAKE_SOURCE_DIR}/assets/shaders/shadow.frag"
+)
+set(_shader_options BATCHABLE OPTIMIZED)
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  list(APPEND _shader_options DEBUGINFO)
 endif()
+if(NOT WIN32)
+  list(APPEND _shader_options NOHLSL)
+endif()
+qt_add_shaders(${LIBNAME} "shaders"
+    PREFIX
+        /Fluid
+    BASE
+        "${CMAKE_SOURCE_DIR}"
+    GLSL
+        "300es,330"
+        ${_shader_options}
+    FILES
+        ${_shaders}
+)
+foreach(file ${_shaders})
+    file(RELATIVE_PATH rel_path "${CMAKE_SOURCE_DIR}" "${file}")
+    set(output_file ".qsb/${rel_path}.qsb")
+    add_custom_command(
+        OUTPUT ${output_file}
+        DEPENDS ${_common_glsl}
+        APPEND
+    )
+endforeach()
+
+# ------------------------------------------------------------
+# Fonts
+# ------------------------------------------------------------
+function(download_material_symbols_font name)
+    message(STATUS "Downloading Material Symbols font: ${name}")
+    file(DOWNLOAD
+        "https://raw.githubusercontent.com/google/material-design-icons/refs/heads/master/variablefont/${name}"
+        "${CMAKE_CURRENT_BINARY_DIR}/assets/fonts/${name}"
+        SHOW_PROGRESS
+        STATUS download_status
+    )
+
+    # Check download status and bail out on failure
+    list(GET download_status 0 download_result)
+    list(GET download_status 1 download_reason)
+    if(NOT download_result EQUAL 0)
+        message(FATAL_ERROR "Failed to download Material Symbols font: ${download_reason} (code ${download_result})")
+    endif()
+endfunction()
+
+download_material_symbols_font("MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf")
+download_material_symbols_font("MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf")
+download_material_symbols_font("MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf")
+
+qt_add_resources(${LIBNAME} "assets/fonts"
+    PREFIX
+        /Fluid/assets/fonts
+    BASE
+        "${CMAKE_CURRENT_BINARY_DIR}/assets/fonts"
+    FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/assets/fonts/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf"
+        "${CMAKE_CURRENT_BINARY_DIR}/assets/fonts/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf"
+        "${CMAKE_CURRENT_BINARY_DIR}/assets/fonts/MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf"
+)

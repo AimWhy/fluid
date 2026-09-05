@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "fluid-gallery",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "lldb",
+            "environment": [
+                {
+                    "name": "QML_IMPORT_PATH",
+                    "value": "${command:cmake.buildDirectory}/qml_modules"
+                },
+                {
+                    "name": "QML2_IMPORT_PATH",
+                    "value": "${command:cmake.buildDirectory}/qml_modules"
+                },
+                {
+                    "name": "DYLD_LIBRARY_PATH",
+                    "value": "${command:cmake.buildDirectory}/src/controls:${command:cmake.buildDirectory}/src/private"
+                },
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${command:cmake.buildDirectory}/src/controls:${command:cmake.buildDirectory}/src/private"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,304 @@
+// SPDX-FileCopyrightText: 2018 Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+// SPDX-License-Identifier: MPL-2.0
+
+import QtQuick
+
+/*!
+    \class SmoothFadeImage
+    \brief Displays an image and smoothly fades when its source changes.
+
+    SmoothFadeImage is a Fluid transition utility rather than a standalone
+    Material 3 component. Its fade duration can be selected from the application's
+    Material 3 motion tokens.
+
+    This component can be used in place of an Image when a smooth fade animation
+    between two sources is needed.
+
+    When the source is changed and the fade animation ends, the image loaded before
+    is unloaded; this means that only one image at a time is loaded.
+
+    Images are loaded asynchronously and are not cache, so unlike the Image
+    component the \c asynchronous and \c cache properties are not available.
+
+    Example of usage:
+    \code{.qml}
+    import QtQuick 2.10
+    import Fluid.Controls 1.0
+
+    Item {
+        width: 128
+        height: 128
+
+        SmoothFadeImage {
+            anchors.fill: parent
+            source: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Qt_logo_2015.svg/1380px-Qt_logo_2015.svg.png"
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            fadeDuration: 400
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: parent.source = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Qt_logo_2016.svg/1280px-Qt_logo_2016.svg.png"
+            }
+        }
+    }
+    \endcode
+*/
+Item {
+    id: root
+
+    // Images are decorative by default. Set Accessible.name (and optionally
+    // role/ignored) on this item when the image conveys content.
+    Accessible.role: Accessible.Graphic
+    Accessible.ignored: Accessible.name.length === 0
+
+    /*!
+        The image being displayed.
+        SmoothFadeImage can handle any image format supported by Qt, loaded
+        from any URL scheme supported by Qt.
+
+        \sa Image::source
+    */
+    property url source
+
+    /*!
+        Set this property to define what happens when the source image has a
+        different size than the item.
+
+        - `Image.Stretch`: The image is scaled to fit (default).
+        - `Image.PreserveAspectFit`: The image is scaled uniformly to fit
+          without cropping.
+        - `Image.PreserveAspectCrop`: The image is scaled uniformly to fill,
+          cropping if necessary.
+        - `Image.Tile`: The image is duplicated horizontally and vertically.
+        - `Image.TileVertically`: The image is stretched horizontally and
+          tiled vertically.
+        - `Image.TileHorizontally`: The image is stretched vertically and
+          tiled horizontally.
+        - `Image.Pad`: The image is not transformed.
+
+        Defaults to \c Image.Stretch.
+
+        Note that \c clip is false by default which means that the item might
+        paint outside its bounding rectangle even if the fillMode is set to PreserveAspectCrop.
+    */
+    property int fillMode: Image.Stretch
+
+    /*!
+        Set this to change the fade animation time (in milliseconds).
+        Default value is 250 ms.
+    */
+    property int fadeDuration: 250
+
+    /*!
+        This property holds whether the fade animation is running or not.
+    */
+    readonly property bool running: animation.running
+
+    /*!
+        Set this property to false to disable the fade animation.
+        If the animation is disable, SmoothFadeImage behaves like a normal Image.
+
+        The fade animation is enabled by default.
+    */
+    property bool animationEnabled: true
+
+    /*!
+        This property holds the actual width and height of the loaded image.
+
+        Unlike the \c width and \c height properties, which scale the painting of the
+        image, this property sets the actual number of pixels stored for the
+        loaded image so that large images do not use more memory than necessary.
+
+        For example, this ensures the image in memory is no larger than
+        1024x1024 pixels, regardless of the SmoothFadeImage's width and height values:
+
+        \code{.qml}
+            Rectangle {
+                width: ...
+                height: ...
+
+                Image {
+                    anchors.fill: parent
+                    source: "reallyBigImage.jpg"
+                    sourceSize.width: 1024
+                    sourceSize.height: 1024
+                }
+            }
+        \endcode
+
+        If the image's actual size is larger than the sourceSize, the image is
+        scaled down. If only one dimension of the size is set to greater than 0,
+        the other dimension is set in proportion to preserve the source image's
+        aspect ratio. (The \c fillMode is independent of this.)
+
+        If both the sourceSize.width and sourceSize.height are set the image
+        will be scaled down to fit within the specified size, maintaining the
+        image's aspect ratio. The actual size of the image after scaling is
+        available via \c Item::implicitWidth and \c Item::implicitHeight.
+
+        If the source is an intrinsically scalable image (eg. SVG), this property
+        determines the size of the loaded image regardless of intrinsic size.
+        Avoid changing this property dynamically; rendering an SVG is slow compared
+        to an image.
+
+        If the source is a non-scalable image (eg. JPEG), the loaded image will be
+        no greater than this property specifies. For some formats (currently only
+        JPEG), the whole image will never actually be loaded into memory.
+
+        sourceSize can be cleared to the natural size of the image by setting
+        sourceSize to undefined.
+
+        Note: Changing this property dynamically causes the image source to be
+        reloaded, potentially even from the network, if it is not in the disk cache.
+    */
+    property alias sourceSize: __priv.sourceSize
+
+    /*!
+        This property holds the status of image loading. It can be one of:
+
+        - `Image.Null`: No image has been set.
+        - `Image.Ready`: The image has been loaded.
+        - `Image.Loading`: The image is currently being loaded.
+        - `Image.Error`: An error occurred while loading the image.
+    */
+    readonly property int status: __priv.loadingImage ? __priv.loadingImage.status : Image.Null
+
+    /*!
+        This property holds whether the image is smoothly filtered when scaled or
+        transformed. Smooth filtering gives better visual quality, but it may be
+        slower on some hardware.
+
+        If the image is displayed at its natural size, this property has no
+        visual or performance effect.
+
+        By default, this property is set to \c true.
+    */
+    property bool smooth: true
+
+    /*!
+        This signal is emitted when the swap between the old source and the new
+        one has happened.
+    */
+    signal imageSwapped
+
+    QtObject {
+        id: __priv
+
+        property size sourceSize: Qt.size(undefined, undefined)
+
+        property Image currentImage: image1
+        property Image nextImage: image2
+        property Image loadingImage: currentImage
+
+        onSourceSizeChanged: {
+            // Change source size for both images
+            image1.sourceSize = sourceSize;
+            image2.sourceSize = sourceSize;
+        }
+
+        function swapImages() {
+            // Swap images stacking order and start fading animation
+            __priv.currentImage.z = 0;
+            __priv.nextImage.z = 1;
+            if (root.animationEnabled)
+                animation.start();
+
+            // Swap images pointers
+            var oldImage = __priv.currentImage;
+            __priv.currentImage = __priv.nextImage;
+            __priv.nextImage = oldImage;
+        }
+    }
+
+    onSourceChanged: {
+        // Set image pointers at creation time
+        if (__priv.currentImage === null) {
+            __priv.currentImage = image1;
+            __priv.nextImage = image2;
+        }
+
+        // Stop the animation if the source is changed while
+        // it's still running
+        animation.stop();
+
+        // Unload both images
+        if (root.source == "") {
+            __priv.currentImage.source = "";
+            __priv.nextImage.source = "";
+            __priv.loadingImage = null;
+            return;
+        }
+
+        if (__priv.currentImage.source == "") {
+            // Assign the source to the current image for the first time
+            __priv.currentImage.source = root.source;
+            __priv.loadingImage = __priv.currentImage;
+        } else {
+            // Image source is changed, make sure the animation is not running
+            animation.stop();
+
+            // Prepare the next image
+            __priv.nextImage.opacity = 0.0;
+            __priv.nextImage.source = root.source;
+            __priv.loadingImage = __priv.nextImage;
+
+            // If the next image is still cached the status will already be Ready
+            // otherwise it's not loaded, either way we need to swap
+            if (__priv.nextImage.status === Image.Ready || __priv.nextImage.source === "")
+                __priv.swapImages();
+        }
+    }
+
+    Connections {
+        target: __priv.nextImage
+
+        function onOpacityChanged() {
+            if (__priv.nextImage.opacity == 1.0)
+                root.imageSwapped();
+        }
+
+        function onStatusChanged() {
+            if (__priv.nextImage.status === Image.Ready)
+                __priv.swapImages();
+        }
+    }
+
+    Image {
+        id: image1
+        anchors.fill: parent
+        cache: false
+        asynchronous: true
+        fillMode: root.fillMode
+        smooth: root.smooth
+        clip: root.clip
+        z: 1
+        Accessible.ignored: true
+    }
+
+    Image {
+        id: image2
+        anchors.fill: parent
+        cache: false
+        asynchronous: true
+        fillMode: root.fillMode
+        smooth: root.smooth
+        clip: root.clip
+        z: 0
+        Accessible.ignored: true
+    }
+
+    NumberAnimation {
+        id: animation
+        target: __priv.nextImage
+        property: "opacity"
+        to: 1.0
+        duration: root.fadeDuration
+        onRunningChanged: {
+            // When the fade animation stops, we unload the second image in
+            // order to save some memory (only one image will be load at a time)
+            if (!running)
+                __priv.nextImage.source = "";
+        }
+    }
+}
